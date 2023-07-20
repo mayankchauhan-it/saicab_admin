@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate, login, logout #For Authentication 
 # Create your views here.
 
 def dashboard(request):
-    return HttpResponse('<h1>Log In Success</h1>')
+    # return HttpResponse('<h1>Log In Success</h1>')
+    return render(request, 'includes/base.html')
 
 
 def loginpage(request):
