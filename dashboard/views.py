@@ -8,8 +8,9 @@ from django.contrib.auth import authenticate, login, logout #For Authentication 
 
 def dashboard(request):
     # return HttpResponse('<h1>Log In Success</h1>')
-    return render(request, 'home/index.html')
-    # return render(request, 'includes/base.html')
+    # return render(request, 'dashboard/dashboard2.html')
+    return render(request, 'dash/templates/home/index.html')
+    # return render(request, 'include/base.html')
 
 
 def loginpage(request):

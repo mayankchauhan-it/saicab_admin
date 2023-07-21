@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>{% block title %} Your title {% endblock title %} Your title </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	{% comment %} <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> {% endcomment %}
+	<link rel="icon" type="image/png" href={%static 'images/icons/favicon.ico'%} />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/bootstrap/css/bootstrap.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/animate/animate.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/css-hamburgers/hamburgers.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/select2/select2.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'css/util.css'%}>
+
+	<link rel="stylesheet" type="text/css" href={%static 'css/main.css'%}>
+	<!--===============================================================================================-->
+
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+</head>
+
+<body class="bg-dark">
+    <div class="row h-100 w-100">
+        <div class="col-md-12 ">
+            {% comment %} <div style="position: absolute; z-index: 99; height: 80px;" class="row w-100">
+                <div class="col-md-12">
+                    {% block 'navbar' %}
+                    <h1>Welcome to DashBoard New</h1>
+                    {% endblock 'navbar' %}
+                </div>
+            </div> {% endcomment %}
+
+            <!-- Main Container -->
+            <div style="height: 100%;" class="row ">
+                <div class="col-md-12 ">
+                    <div class="row h-100">
+                        <!-- Side Bar Started -->
+                        <div class="col-md-2">
+                            {% block 'sidebar' %}
+                            {% endblock 'sidebar' %}
+                        </div>
+                        <!-- Side Bar Ended -->
+
+
+                        <!-- Main Content Box Start -->
+                        <div class="col-md-10">
+                            {% block 'content' %}{% endblock 'content' %}
+                        </div>
+                        <!-- Main Content Box End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+	<script src={%static "vendor/jquery/jquery-3.2.1.min.js"%}></script>
+	<!--===============================================================================================-->
+	<script src={%static "vendor/bootstrap/js/popper.js"%}></script>
+	<script src={%static "vendor/bootstrap/js/bootstrap.min.js"%}></script>
+	<!--===============================================================================================-->
+	<script src={%static "vendor/select2/select2.min.js"%}></script>
+	<!--===============================================================================================-->
+	<script src={%static "vendor/tilt/tilt.jquery.min.js"%}></script>
+
+
+
+	<script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<!--===============================================================================================-->
+	<script src={%static "js/main.js"%}></script>
+
+    {% block jsblock %}{% endblock jsblock %}
+</body>
+
