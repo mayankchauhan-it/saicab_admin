@@ -1,0 +1,72 @@
+<!--
+=========================================================
+* * Black Dashboard - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/black-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	{% comment %} <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> {% endcomment %}
+	<link rel="icon" type="image/png" href={%static 'images/icons/favicon.ico'%} />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/bootstrap/css/bootstrap.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/animate/animate.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/css-hamburgers/hamburgers.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'vendor/select2/select2.min.css'%}>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href={%static 'css/util.css'%}>
+
+	<link rel="stylesheet" type="text/css" href={%static 'css/main.css'%}>
+	<!--===============================================================================================-->
+
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+        
+</head>
+<body class="">
+
+    <div class="wrapper">
+
+        {% include 'includes/sidebar.html' %}
+
+        <div class="main-panel">
+
+            {% include 'includes/navigation.html' %}
+
+            {% block content %}{% endblock content %}
+
+            {% include 'includes/footer.html' %}
+
+        </div>
+    </div>
+
+    {% include 'includes/fixed-plugin.html' %}
+
+    {% include 'includes/scripts.html' %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>

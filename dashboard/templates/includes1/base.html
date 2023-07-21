@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} SaiCab {% endblock %}</title>
+    {% block 'head' %}{% endblock 'head' %}
+    
+</head>
+<body >
+    <div class="row">
+        <div class="col-md-12 ">
+            {% block 'nav'%} {% endblock %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{% block 'heading'%} Welcome to Basic.html {% endblock %}</h1>
+        </div>
+    </div>
+
+</body>
+
+
+{% block 'script' %}{% endblock 'script' %}
+
+</html>
+
