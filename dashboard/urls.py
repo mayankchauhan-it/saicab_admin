@@ -7,6 +7,8 @@ from django.conf import settings
 urlpatterns = [
     path('', views.loginpage, name = 'login'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('home', views.home, name='home'),
+    path('homedatadelete/<int:id>', views.deletehomedata, name='deletehome')
 
 
 

@@ -3,13 +3,14 @@ from django.http import HttpResponse
 from .models import *
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout #For Authentication related modules
+from django.contrib import messages
 
 # Create your views here.
 
 def dashboard(request):
     # return HttpResponse('<h1>Log In Success</h1>')
     # return render(request, 'dashboard/dashboard2.html')
-    return render(request, 'dash/templates/home/index.html')
+    return render(request, 'dash/templates/home/index_final.html')
     # return render(request, 'include/base.html')
 
 
@@ -33,3 +34,24 @@ def loginpage(request):
     return render(request, 'dashboard/login.html')
 
 
+def home(request):
+
+    if request.method == 'POST':
+        heading_text = request.POST['headingname']
+        image_file = request.FILES['File']
+
+        obj = sliderupdate()
+        obj.heading = heading_text
+        obj.image = image_file
+        obj.save()
+
+    heading_content = sliderupdate.objects.all()
+
+
+    return render (request, 'dashboard/home.html', {'heading_data' : heading_content})
+
+def deletehomedata(request, id):
+    entry = sliderupdate.objects.get(id=id)
+    entry.delete()
+    messages.success(request,'Data Deleted Successfully!')
+    return redirect('home')
