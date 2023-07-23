@@ -13,6 +13,7 @@
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +39,8 @@
   <link rel="stylesheet" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
 
-
+  <!-- CKEDITOR JS -->
+  <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
   
   <!-- Argon CSS -->
   <link rel="stylesheet" href="/static/assets/css/argon.css" type="text/css">
@@ -66,6 +68,11 @@
   {% block javascripts %}{% endblock javascripts %}
 
   <script src="/static/assets/js/argon.js"></script>
+
+  <!-- CKEDITOR JS -->
+  <script type="text/javascript">
+    CKEDITOR.replace('headingname');
+  </script> 
 
 </body>
 

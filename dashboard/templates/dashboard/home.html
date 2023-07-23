@@ -74,17 +74,17 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Sr.No</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Update</th>
-                                <th scope="col">Delete</th>
+                                <th style="text-align: center;" scope="col">Sr.No</th>
+                                <th style="text-align: center;" scope="col">Title</th>
+                                <th style="text-align: center;" scope="col">Image</th>
+                                <th style="text-align: center;" scope="col">Update</th>
+                                <th style="text-align: center;" scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 {% for data in heading_data%}
-                                <td scope="row">
+                                <td style="text-align: center;"  scope="row">
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
@@ -145,7 +145,7 @@
                             <label for="recipient-name" class="col-form-label">Slider Heading Text</label>
                             <input type="text" class="form-control" id="headingname" required
                                 name="headingname" /><br />
-
+                            
                             <label for="recipient-name" class="col-form-label">Slider Image:</label>
                             <input type="file" class="form-control" id="myFile" required name="File" multiple /><br />
 

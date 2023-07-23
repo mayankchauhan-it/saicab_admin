@@ -1,0 +1,196 @@
+{% extends 'dash/templates/layouts/base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+    .messages-container {
+      position: fixed;
+      top: 10px;
+      z-index: 9999;
+    }
+  
+    .messages div {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 16px;
+      {% comment %} list-style: none; {% endcomment %}
+    }
+  
+    /* Style the success message with a green background */
+    .messages div.success {
+      background-color: #5cb85c;
+    }
+  </style>
+  
+{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <h3 class="h2 text-warning"> Booking Entry </h3>
+                                    {% comment %} <button type="button" class="btn btn-warning" data-toggle="modal"
+                                        data-target="#exampleModalLong">Change</button> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">Booking Entries</h3>
+                        </div>
+                        <div class="col text-right">
+                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="text-align: center;" scope="col">Sr.No</th>
+                                <th style="text-align: center;" scope="col">Name</th>
+                                <th style="text-align: center;" scope="col">Email</th>
+                                <th style="text-align: center;" scope="col">Pick Up Location</th>
+                                <th style="text-align: center;" scope="col">Drop Off Location</th>
+                                <th style="text-align: center;" scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for data in formdata_list%}
+                                <td style="text-align: center;"  scope="row">
+                                    {{forloop.counter}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.usernamedata}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.emaildata}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.pickuplocation}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.dropofflocation}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    <a href="/bookingdatadelete/{{ data.id }}"
+                                        onclick="return confirm('Are You Sure,You want to delete this data?');"
+                                        class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                <div{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Start -->
+    <!-- Add Model Start -->
+    <div class="modal fade" id="exampleModalLong">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change the Slider</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token%}
+                        <div class="form-group">
+
+
+                            <label for="recipient-name" class="col-form-label">Slider Heading Text</label>
+                            <input type="text" class="form-control" id="headingname" required
+                                name="headingname" /><br />
+                            
+                            <label for="recipient-name" class="col-form-label">Slider Image:</label>
+                            <input type="file" class="form-control" id="myFile" required name="File" multiple /><br />
+
+                            <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="success" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "dash/templates/includes/footer.html" %}
+
+
+      <!-- Specific JS goes HERE --> 
+  {% block javascripts %}
+
+  <script>
+    // Function to automatically dismiss messages after 2 seconds
+    function dismissMessages() {
+      const messages = document.querySelectorAll('.messages div');
+      messages.forEach(message => {
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 2000); // 2 seconds
+      });
+    }
+  
+    // Call the function to dismiss messages when the page loads
+    document.addEventListener('DOMContentLoaded', dismissMessages);
+  </script>
+  
+  
+  {% endblock javascripts %}
+
+
+</div>
+
+{% endblock content %}

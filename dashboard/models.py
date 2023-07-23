@@ -11,3 +11,14 @@ class sliderupdate(models.Model):
         self.image = image
 
         self.save()
+    
+
+
+
+
+class formdata(models.Model):
+    usernamedata = models.CharField(max_length=255, null=True)
+    emaildata = models.CharField(max_length=255, null=True)
+    pickuplocation = models.CharField(max_length=255, null=True)
+    dropofflocation = models.CharField(max_length=255, null=True)
+    

@@ -1,0 +1,116 @@
+{% extends 'dash/templates/layouts/base.html' %} {% block title %} Form Testing
+File {% endblock title %} {% block content %}
+
+<div class="container-fluid ml-4">
+    <div class="">
+        <!--Section heading-->
+        <h2 class="h1-responsive font-weight-bold text-center my-4 text-warning">
+            Book Your Cab
+        </h2>
+    </div>
+
+    <div class="row justify-content-center">
+        <!--Grid column-->
+        <div class="col-md-8 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" method="POST">
+                {% csrf_token %}
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="name" name="name" class="form-control" />
+                            <label for="name" class="">Your name</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="email" name="email" class="form-control" />
+                            <label for="email" class="">Your email</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="pickuplocation_id" name="pickuplocation_name" class="form-control" />
+                            <label for="pickuplocation_name" class="">Pick-Up Location</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="dropofflocation_id" name="dropofflocation_name" class="form-control" />
+                            <label for="dropofflocation_name" class="">Drop-off Location</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="date" id="date_id" name="date_name" class="form-control" />
+                            <label for="date_name" class="">Pick-up Date</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="time" id="time_id" name="time_name" class="form-control" />
+                            <label for="time_name" class="">Pick-up Time</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <!-- <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="subject" name="subject" class="form-control" />
+                            <label for="subject" class="">Subject</label>
+                        </div>
+                    </div>
+                </div> -->
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <!-- <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <textarea type="text" id="message" name="message" rows="2"
+                                class="form-control md-textarea"></textarea>
+                            <label for="message">Your message</label>
+                        </div>
+                    </div>
+                </div> -->
+                <!--Grid row-->
+            </form>
+
+            <div class="text-center text-md-center">
+                <a class="btn btn-primary w-25" onclick="document.getElementById('contact-form').submit();">Book Now</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+    </div>
+</div>
+
+{% endblock content %}

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dashboard'
+    'dashboard',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+# CKEditor configuration
+CKEDITOR_UPLOAD_PATH = "uploads/"  # The path where uploaded files will be stored.
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'  # CDN URL for jQuery (optional, but recommended).
+
+
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP host
+EMAIL_PORT = 587  # Replace with your SMTP port
+EMAIL_USE_TLS = True  # Use TLS for secure connection
+EMAIL_HOST_USER = 'mayankchauhan.it@gmail.com'  # Replace with your email address
+EMAIL_HOST_PASSWORD = 'uxhgolneltasveex'  # Replace with your email password

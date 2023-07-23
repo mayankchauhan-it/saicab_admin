@@ -5,6 +5,11 @@ from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout #For Authentication related modules
 from django.contrib import messages
 
+# Email Imports
+from django.core.mail import send_mail, EmailMessage
+from sai_admin.settings import EMAIL_HOST_USER
+
+
 # Create your views here.
 
 def dashboard(request):
@@ -55,3 +60,43 @@ def deletehomedata(request, id):
     entry.delete()
     messages.success(request,'Data Deleted Successfully!')
     return redirect('home')
+
+
+def formtest(request):
+    if request.method == 'POST':
+        username = request.POST['name']
+        email = request.POST['email']
+        # subject = request.POST['subject']
+        # usermessage = request.POST['message']
+
+        pickuplocation = request.POST['pickuplocation_name']
+        dropofflocation = request.POST['dropofflocation_name']
+
+        obj2 = formdata()
+        obj2.usernamedata = username
+        obj2.emaildata = email
+        obj2.pickuplocation = pickuplocation
+        obj2.dropofflocation = dropofflocation
+        obj2.save()
+    
+        # Send the email
+        subject = f'New Booking from {username}'
+        email_message = f'Name: {username}\nEmail: {email}\nPick-Up Date: {pickuplocation}\nDrop-Off Location: {dropofflocation}'
+        
+        email = EmailMessage(subject, email_message, to=[EMAIL_HOST_USER])
+        email.send()
+
+        return redirect("formtest") 
+
+    return render(request, 'dashboard/formtest.html')
+
+def bookingentry(request):
+    form_data = formdata.objects.all()
+
+    return render(request, 'dashboard/formentry.html', {'formdata_list': form_data})
+
+def deletebookingdata(request, id):
+    entry = formdata.objects.get(id=id)
+    entry.delete()
+    messages.success(request,'Data Deleted Successfully!')
+    return redirect('bookingentry')
