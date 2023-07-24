@@ -1,0 +1,288 @@
+
+
+
+
+@media screen and (min-width: 768px) and (max-width:991px) {
+  .container {
+    max-width: 96% !important;
+  }
+    .sky {
+      height: 60vh;
+    }
+  
+    .wheel img {
+      width: 70px;
+      height: 70px;
+      animation: wheel 1s linear infinite;
+    }
+  
+    .backwheel {
+      position: absolute;
+      left: -148px;
+      top: 12px;
+    }
+  
+    .frontwheel {
+      position: absolute;
+      left: 65px;
+      TOP: 12PX;
+    }
+  
+    .car {
+      width: 350px;
+    }
+}
+
+
+
+@media screen and (min-width: 767px) and (max-width:767px) {
+  .container {
+    max-width: 96% !important;
+  }
+
+.sky {
+  height: 60vh;
+}
+
+.wheel img {
+  width: 70px;
+  height: 70px;
+  animation: wheel 1s linear infinite;
+}
+
+.backwheel {
+  position: absolute;
+  left: -148px;
+  top: 12px;
+}
+
+.frontwheel {
+  position: absolute;
+  left: 65px;
+  TOP: 12PX;
+}
+
+.car {
+  width: 350px;
+}
+
+}
+
+
+
+
+
+@media screen and (min-width: 575px) and (max-width:766px) {
+  .container {
+    max-width: 96% !important;
+  }
+
+.sky {
+    height: 60vh;
+  }
+
+  .wheel img {
+    width: 50px;
+    height: 50px;
+    animation: wheel 1s linear infinite;
+  }
+
+  .backwheel {
+    position: absolute;
+    left: -109px;
+    top: 29px;
+  }
+
+  .frontwheel {
+    position: absolute;
+    left: 50px;
+    TOP: 29PX;
+  }
+
+  .car {
+    width: 260px;
+  }
+
+
+}
+
+
+
+@media screen and (min-width: 480px) and (max-width:574px) {
+  .container {
+    max-width: 96% !important;
+  }
+  .nav.nav-pills.d-flex.justify-content-center button {
+    padding: 17px 41px;
+    font-size: 16px;
+  }
+  .slctcartext button {
+    margin-bottom: 30px;
+  }
+  .sky {
+    height: 70vh;
+  }
+
+  .wheel img {
+    width: 50px;
+    height: 50px;
+    animation: wheel 1s linear infinite;
+  }
+
+  .backwheel {
+    position: absolute;
+    left: -109px;
+    top: 29px;
+  }
+
+  .frontwheel {
+    position: absolute;
+    left: 50px;
+    TOP: 29PX;
+  }
+
+  .car {
+    width: 260px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .container {
+    max-width: 96% !important;
+  }
+  tr {
+    font-size: 10px;
+  }
+  .btn.searchbtn.btn-primary {
+    display: flex;
+    margin: 0 auto;
+  }
+  .testimonial-text.bg-light.text-center.p-4 {
+    height: 400px;
+    border-radius: 30px;
+  }
+  .product-item img {
+    display: flex;
+    margin: 0 auto;
+    width: -moz-available;
+  }
+  .justify-content-end {
+    justify-content: center !important;
+  }
+  .nav.nav-pills.d-flex.justify-content-end {
+    padding-right: 0;
+    margin: 0;
+  }
+  .col-lg-6.detl {
+    padding-left: 10px;
+  }
+  .nav.nav-pills.d-flex.justify-content-center button {
+    padding: 12px 11px;
+  }
+  .pricingTable .pricingTable-signup
+  {
+    font-size: 18px;
+  }
+  .pricingTable .ptitle
+  {
+    font-size: 18px;
+  }
+  .pricingTable .pricing-content li {
+    color: #1c1c1c;
+    font-size: 18px;
+    line-height: 45px;
+    text-transform: capitalize;
+    text-align: left;
+    padding: 0px 18px;
+    margin-bottom: 7px;
+    position: relative;
+    margin-left: -15px;
+  }
+  .table
+  {
+    margin-left: -15px;
+  }
+  .carrer
+  {
+    min-height: 150px;
+  
+  } 
+  .carrer2
+  {
+    min-height: 200px;
+  }
+  .basic-1 {
+    padding-top: 0px;
+    padding-bottom: 50px;
+  } 
+  .loader span {
+    color: rgb(7, 7, 7);
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    animation: move 2s ease-in-out infinite;
+  }
+  .detl h2 {
+    font-size: 60px;
+    color: black;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    display: table;
+    margin: 0 auto;
+  }
+  .loader
+  {
+    max-width: 235px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+    .slctcartext button {
+      margin-bottom: 30px;
+    }
+    .sky {
+      height: 60vh;
+    }
+    .wheel img {
+      width: 50px;
+      height: 50px;
+      animation: wheel 1s linear infinite;
+    }
+    .backwheel {
+      position: absolute;
+      left: -109px;
+      top: 29px;
+    }
+    .frontwheel {
+      position: absolute;
+      left: 50px;
+      TOP: 29PX;
+    }
+    .car {
+      width: 260px;
+    }
+      .steps > li {
+    margin-left: 20px;
+  }
+  .steps > li div {
+    width: calc(100vw - 91px);
+  }
+  .steps > li:nth-child(odd) div {
+    left: 45px;
+  }
+  .steps > li:nth-child(even) div:before,
+  .steps > li:nth-child(odd) div:before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #c85641 transparent transparent;
+  }
+    .image-frame img {
+      object-fit: contain;
+      transition: 0.3s;
+      position: relative;
+      height: 167px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+    }
+
+}
