@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>
-    {% block title %} Open-Source Admin Panel {% endblock %}
+    {% block title %} Sai Cab {% endblock %}
   </title>
 
   <!-- Favicon -->
@@ -42,6 +42,9 @@
   <link href="/static/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/meadia.css">
 
+  <!-- CKEDITOR JS -->
+  <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
   <!-- Specific CSS goes HERE -->
   {% block stylesheets %}{% endblock stylesheets %}
 
@@ -49,7 +52,7 @@
 
 <body class="bg-primary">
 
-  {% include "dash/templates/includes/sidenav.html" %}
+  {% comment %} {% include "dash/templates/includes/sidenav.html" %} {% endcomment %}
 
   <div class="main-content" id="panel">
 

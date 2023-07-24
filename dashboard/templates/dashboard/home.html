@@ -75,7 +75,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th style="text-align: center;" scope="col">Sr.No</th>
-                                <th style="text-align: center;" scope="col">Title</th>
+                                <th style="text-align: center;" scope="col">Title1</th>
+                                <th style="text-align: center;" scope="col">Title2</th>
                                 <th style="text-align: center;" scope="col">Image</th>
                                 <th style="text-align: center;" scope="col">Update</th>
                                 <th style="text-align: center;" scope="col">Delete</th>
@@ -90,8 +91,23 @@
                                 <td scope="row" style="text-align: center;">
                                     {{data.heading}}
                                 </td>
-                                <td scope="row" style="text-align: center;"><img src="{{ data.image.url }}" alt="Image"
-                                        style="width: 150px; height: 100px; border: 1px solid black;"></td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.heading2}}
+                                </td>
+                                {% if data.image.url %}
+                                    <td scope="row" style="text-align: center;">
+                                        <img src="{{ data.image.url }}" alt="Image" style="width: 150px; height: 100px; border: 1px solid black;">
+                                    </td>
+                                {% else %}
+                                    <td scope="row" style="text-align: center;">
+                                        <!-- Add your fallback content here -->
+                                        No Image Available
+                                    </td>
+                                {% endif %}
+
+                                
+
+    
 
                                 <td scope="row" style="text-align: center;">
                                     <button type="button" class="btn w-md btn-warning"
@@ -142,12 +158,16 @@
                         <div class="form-group">
 
 
-                            <label for="recipient-name" class="col-form-label">Slider Heading Text</label>
-                            <input type="text" class="form-control" id="headingname" required
-                                name="headingname" /><br />
+                            <label for="recipient-name" class="col-form-label">Slider Heading 1 Text</label>
+                            <input type="text" class="form-control" id="headingname11" required
+                            name="headingname1" /><br />
+
+                            <label for="recipient-name" class="col-form-label">Slider Heading 2 Text</label>
+                            <input type="text" class="form-control" id="headingname21" required
+                            name="headingname2" /><br />
                             
                             <label for="recipient-name" class="col-form-label">Slider Image:</label>
-                            <input type="file" class="form-control" id="myFile" required name="File" multiple /><br />
+                            <input type="file" class="form-control" id="myFile11" name="myfile"  /><br />
 
                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -168,20 +188,16 @@
       <!-- Specific JS goes HERE --> 
   {% block javascripts %}
 
-  <script>
+  {% comment %} <script>
     // Function to automatically dismiss messages after 2 seconds
-    function dismissMessages() {
-      const messages = document.querySelectorAll('.messages div');
-      messages.forEach(message => {
-        setTimeout(() => {
-          message.style.display = 'none';
-        }, 2000); // 2 seconds
-      });
-    }
-  
-    // Call the function to dismiss messages when the page loads
-    document.addEventListener('DOMContentLoaded', dismissMessages);
-  </script>
+    document.addEventListener(function () {
+        const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
+
+        for (const divId of divIds) {
+            CKEDITOR.replace(divId);
+        }
+    });
+  </script> {% endcomment %}
   
   
   {% endblock javascripts %}

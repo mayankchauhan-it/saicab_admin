@@ -5,7 +5,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path("", views.frontend, name="Front End")
+    path("", views.frontend, name="Front End"),
+    path('oneway_view', views.form_oneway, name='form_oneway'),
+    path('roundway_view', views.form_roundway, name='form_roundway'),
+    path('localway_view', views.form_localway, name='form_localway'),
 
 
 
