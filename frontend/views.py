@@ -38,17 +38,18 @@ def get_cities_for_state(request):
 
 def frontend(request):
     obj = sliderupdate.objects.all()
+    heading_content = ""
+    heading_content2 = ""
+
 
     if obj.__len__() != 0:
-        heading_content = sliderupdate.objects.latest('id').heading
-        heading_content2 = sliderupdate.objects.latest('id').heading2
+        # Check if the queryset is not empty before accessing the latest object
+        latest_obj = obj.latest('id')
+        heading_content = latest_obj.heading
         print(heading_content)
-    
+        heading_content2 = latest_obj.heading2
 
-    heading1 = heading_content
-    heading2 = heading_content2
-
-    return render (request, 'frontend/index2.html', {'latest_heading': heading1, 'latest_heading2': heading2, })
+    return render(request, 'frontend/home_front.html', {'latest_heading': heading_content, 'latest_heading2': heading_content2})
 
 def form_oneway(request):
     if request.method == "POST":

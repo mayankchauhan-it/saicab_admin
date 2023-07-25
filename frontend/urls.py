@@ -11,17 +11,4 @@ urlpatterns = [
     path('localway_view', views.form_localway, name='form_localway'),
     path('get-states-and-cities/', views.get_cities_for_state, name='get_cities_for_state'),
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
