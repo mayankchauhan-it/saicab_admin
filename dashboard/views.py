@@ -42,17 +42,27 @@ def loginpage(request):
 def home(request):
     print(request.FILES)
     if request.method == 'POST':
+        obj = sliderupdate()
+
         heading_text1 = request.POST['headingname1']
         heading_text2 = request.POST['headingname2']
-        image_file = request.FILES['myfile']
 
-        obj = sliderupdate()
         obj.heading = heading_text1
         obj.heading2 = heading_text2
 
-        if image_file:
-            obj.image = image_file
+        try:
+            image_file = request.FILES.get('myfile')
+
+            try:
+                obj.image = image_file
+            except:
+                pass
+        except:
+            pass
         
+        obj.save()
+
+        print(obj.heading)
 
 
         # image_file = request.FILES['myfile']
@@ -65,9 +75,7 @@ def home(request):
         #     # If no image uploaded, create object without the image field
         #     obj = sliderupdate(heading=heading_text1, heading2=heading_text2)
 
-        obj.save()
-
-        print(obj.heading)
+            
 
     heading_content = sliderupdate.objects.all()
 

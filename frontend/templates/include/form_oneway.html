@@ -10,16 +10,16 @@
                 placeholder="Your Email" name="youremail" style="height: 55px;">
         </div>
         <div class="col-12 col-sm-6">
-            <input type="text" class="form-control"
-                placeholder="Pickup Location" name="pickup" style="height: 55px;">
+            <input type="text" class="form-control ui-autocomplete-input "
+                placeholder="Pickup Location" name="pickup" style="height: 55px;" id="Pickup">
         </div>
         <div class="col-12 col-sm-6">
             <input type="text" class="form-control"
-                placeholder="Drop-off Location" name="dropoff"style="height: 55px;">
+                placeholder="Drop-off Location" name="dropoff"style="height: 55px;" id="dropoff">
         </div>
         <div class="col-12 col-sm-6">
             <div class="date" id="date1" data-target-input="nearest">
-                <input type="text"
+                <input type="date"
                     class="form-control border-0 datetimepicker-input"
                     placeholder="Pickup Date" data-target="#date1"
                     data-toggle="datetimepicker" style="height: 55px;" name="date">
@@ -27,12 +27,13 @@
         </div>
         <div class="col-12 col-sm-6">
             <div class="time" id="time1" data-target-input="nearest">
-                <input type="text"
+                <input type="time"
                     class="form-control datetimepicker-input"
                     placeholder="Pickup Time" data-target="#time1"
                     data-toggle="datetimepicker" style="height: 55px;" name="time">
             </div>
         </div>
+
         <div class="col-12">
             <select class="form-select" style="height: 55px;">
                 <option selected>One way</option>

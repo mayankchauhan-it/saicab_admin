@@ -11,11 +11,44 @@ from django.core.mail import send_mail, EmailMessage
 from sai_admin.settings import EMAIL_HOST_USER
 
 
-def frontend(request):
-    heading_content = sliderupdate.objects.latest('id').heading
-    print(heading_content)
+from django.http import JsonResponse
+from geopy.geocoders import Nominatim
 
-    return render (request, 'frontend/index.html', {'latest_heading': heading_content})
+
+def get_cities_for_state(request):
+    query = request.GET.get('query', '')
+    
+    # Create a geolocator object
+    geolocator = Nominatim(user_agent="myGeocoder")
+    
+    # Use geopy to get the location for the query
+    location = geolocator.geocode(query + ", India", exactly_one=False)
+    
+    data = []
+    if location:
+        # Extract the state and city names from the location data
+        for loc in location:
+            address = loc.raw['display_name'].split(",")
+            state = address[-3].strip()
+            city = address[0].strip()
+            data.append(city + ", " + state)
+    
+    return JsonResponse(data, safe=False)
+
+
+def frontend(request):
+    obj = sliderupdate.objects.all()
+
+    if obj.__len__() != 0:
+        heading_content = sliderupdate.objects.latest('id').heading
+        heading_content2 = sliderupdate.objects.latest('id').heading2
+        print(heading_content)
+    
+
+    heading1 = heading_content
+    heading2 = heading_content2
+
+    return render (request, 'frontend/index2.html', {'latest_heading': heading1, 'latest_heading2': heading2, })
 
 def form_oneway(request):
     if request.method == "POST":
