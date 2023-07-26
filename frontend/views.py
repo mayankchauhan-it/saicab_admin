@@ -131,3 +131,9 @@ def form_localway(request):
         email.send()
 
     return render (request, 'frontend/index.html')
+
+
+def about(request):
+
+    # return render(request, 'frontend/about.html')
+    return render(request, 'frontend/about_front.html')

@@ -94,7 +94,7 @@
                                 <td scope="row" style="text-align: center;">
                                     {{data.heading2}}
                                 </td>
-                                {% if data.image.url %}
+                                {% if data.image %}
                                     <td scope="row" style="text-align: center;">
                                         <img src="{{ data.image.url }}" alt="Image" style="width: 150px; height: 100px; border: 1px solid black;">
                                     </td>
@@ -166,14 +166,14 @@
                             <input type="text" class="form-control" id="headingname21" required
                             name="headingname2" /><br />
                             
-                            <label for="recipient-name" class="col-form-label">Slider Image:</label>
+                            <label for="image" class="col-form-label">Slider Image:</label>
                             <input type="file" class="form-control" id="myFile11" name="myfile" /><br />
 
                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="success" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </form>

@@ -17,8 +17,11 @@
 <body>
 
   {% block content %}
+    {% block spinner %}{% endblock spinner %}
     {% block topbar %}{% endblock topbar %}
     {% block navigation %}{% endblock navigation %}
+
+    {% block footer %}{% endblock footer %}
   
   {% endblock content %}
 

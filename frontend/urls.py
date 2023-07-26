@@ -10,5 +10,6 @@ urlpatterns = [
     path('roundway_view', views.form_roundway, name='form_roundway'),
     path('localway_view', views.form_localway, name='form_localway'),
     path('get-states-and-cities/', views.get_cities_for_state, name='get_cities_for_state'),
+    path('about', views.about, name='aboutus'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -4,13 +4,15 @@ from django.db import models
 class sliderupdate(models.Model):
     heading = models.CharField(max_length=255, null=True)
     heading2 = models.CharField(max_length=255, null=True)
-    image = models.ImageField(upload_to='slider/', blank=True, null=True)
+    image = models.ImageField(upload_to='slider/', null=True, blank=True)
 
 
-    def update(self, name1, name2, image):
-        self.name = name1
-        self.name2 = name2
-        self.image = image
+    def update(self, new_heading, new_heading2, new_image=None):
+        self.heading = new_heading
+        self.heading2 = new_heading2
+
+        if new_image:
+            self.image = new_image
 
         self.save()
     
