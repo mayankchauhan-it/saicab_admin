@@ -49,7 +49,7 @@ def frontend(request):
         print(heading_content)
         heading_content2 = latest_obj.heading2
 
-    return render(request, 'frontend/home_front.html', {'latest_heading': heading_content, 'latest_heading2': heading_content2})
+    return render(request, 'page/home_front.html', {'latest_heading': heading_content, 'latest_heading2': heading_content2})
 
 def form_oneway(request):
     if request.method == "POST":
@@ -136,4 +136,4 @@ def form_localway(request):
 def about(request):
 
     # return render(request, 'frontend/about.html')
-    return render(request, 'frontend/about_front.html')
+    return render(request, 'page/about_front.html')
