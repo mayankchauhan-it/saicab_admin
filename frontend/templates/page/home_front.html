@@ -1407,7 +1407,7 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
 <script>
     $(".tab_content").hide();
     $(".tab_content:first").show();
@@ -1517,6 +1517,7 @@
             },
             minLength: 2
         })
+
         $("#Pickup_round").autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -1538,7 +1539,30 @@
             },
             minLength: 2
         })
+
         $("#dropoff_round").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/get-states-and-cities/",
+                    dataType: "json",
+                    data: {
+                        query: request.term
+                    },
+                    success: function (data) {
+                        var suggestions = data.map(function (address) {
+                            var parts = address.split(", ");
+                            var city = parts[0];
+                            var state = parts[1];
+                            return city + ", " + state
+                        });
+                        response(suggestions);
+                    }
+                });
+            },
+            minLength: 2
+        })
+
+        $("#local_location").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/get-states-and-cities/",
