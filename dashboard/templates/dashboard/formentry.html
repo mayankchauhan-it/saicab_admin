@@ -73,7 +73,7 @@
                 </div>
 
                 <!-- One Way Table -->
-                <div id="oneway_table" class="table-responsive d-none">
+                <div id="oneway_table" class="table-responsive entrytable d-none">
                     <!-- Projects table -->
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
@@ -114,7 +114,7 @@
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    <a href="deletebookingentry/{{ data.id }}"
+                                    <a href=href="{% url 'Delete_singleTrip_entry' data.id%}"
                                         onclick="return confirm('Are You Sure,You want to delete this data?');"
                                         class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
                                     </a>
@@ -135,7 +135,7 @@
                 </div>
 
                 <!-- Round Way Table -->
-                <div id="roundway_table" class="table-responsive d-none">
+                <div id="roundway_table" class="table-responsive entrytable d-none">
                     <!-- Projects table -->
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
@@ -191,7 +191,7 @@
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    <a href="deletebookingentry/{{ data.id }}"
+                                    <a href="{% url 'Delete_roundTrip_entry' data.id%}"
                                         onclick="return confirm('Are You Sure,You want to delete this data?');"
                                         class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
                                     </a>
@@ -212,7 +212,7 @@
                 </div>
 
                 <!-- Local Table -->
-                <div id="local_table" class="table-responsive d-none">
+                <div id="local_table" class="table-responsive entrytable d-none">
                     <!-- Projects table -->
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
@@ -248,7 +248,7 @@
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    <a href="deletebookingentry/{{ data.id }}"
+                                    <a href="{% url 'Delete_localTrip_entry' data.id%}"
                                         onclick="return confirm('Are You Sure,You want to delete this data?');"
                                         class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
                                     </a>
@@ -331,7 +331,7 @@
   </script>
 
   <script>
-    $(document).ready(function(){
+    {% comment %} $(document).ready(function(){
 
 
         $("#table_heading").text("One Way Entries")
@@ -362,8 +362,54 @@
 
             $('#oneway_table').addClass('d-none')
             $('#roundway_table').addClass('d-none')
-        })
-    })
+        }) 
+    }) {% endcomment %}
+
+    $(document).ready(function () {
+        $("#table_heading").text("One Way Entries")
+        // Function to show the selected table and hide others
+        function showTable(tableId) {
+          // Hide all tables
+          $('.entrytable').addClass('d-none');
+    
+          // Show the selected table
+          $('#' + tableId).removeClass('d-none');
+    
+          // Save the selected table ID to localStorage
+          localStorage.setItem('selectedTable', tableId);
+    
+          // Update the table heading (optional)
+          const tableHeading = $('#' + tableId).data('table-heading');
+          $("#table_heading").text(tableHeading);
+        }
+    
+        // On page load, check if there is a previously selected table in localStorage
+        const selectedTableId = localStorage.getItem('selectedTable');
+        if (selectedTableId) {
+          // Show the previously selected table
+          showTable(selectedTableId);
+        } else {
+          // Show the default table (you can change 'oneway_table' to the default table ID)
+          showTable('oneway_table');
+          $("#table_heading").text("One Way Entries")
+        }
+    
+        // Button click events
+        $('#oneway_button').click(function () {
+          showTable('oneway_table');
+          $("#table_heading").text("One Way Entries")
+        });
+    
+        $('#roundway_button').click(function () {
+          showTable('roundway_table');
+          $("#table_heading").text("Round Way Entries")
+        });
+    
+        $('#local_button').click(function () {
+          showTable('local_table');
+          $("#table_heading").text("Local Way Entries")
+        });
+      });
   </script>
   
   

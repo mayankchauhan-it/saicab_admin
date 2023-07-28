@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
 from .models import *
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout #For Authentication related modules
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.views import View
 
 # Email Imports
 from django.core.mail import send_mail, EmailMessage
@@ -13,10 +14,7 @@ from sai_admin.settings import EMAIL_HOST_USER
 # Create your views here.
 
 def dashboard(request):
-    # return HttpResponse('<h1>Log In Success</h1>')
-    # return render(request, 'dashboard/dashboard2.html')
     return render(request, 'dash/templates/home/index_final.html')
-    # return render(request, 'include/base.html')
 
 
 def loginpage(request):
@@ -75,16 +73,25 @@ def bookingentry(request):
     return render(request, 'dashboard/formentry.html', {'onewaybooking_data': onewaybooking_data,'roundbooking_data': roundbooking_data,'localbooking_data': localbooking_data })
 
 
-def delete_bookingata(request,id):
-    oneway_entry = onewaybooking.objects.get(id=id)
-    oneway_entry.delete()
+def Delete_singleTrip_entry(request, id):
+    singleTrip_entry = onewaybooking.objects.get(id=id)
+    singleTrip_entry.delete()
 
-    roundway_entry = roundbooking.objects.get(id=id)
-    roundway_entry.delete()
-
-    local_entry = localbooking.objects.get(id=id)
-    local_entry.delete()
-
-    messages.success(request,'Data Deleted Successfully!')
+    messages.success(request, 'Data Deleted Successfully from Oneway Booking!')
     return redirect('bookingentry')
+
+def Delete_roundTrip_entry(request, id):
+    roundTrip_entry = roundbooking.objects.get(id=id)
+    roundTrip_entry.delete()
+    messages.success(request, 'Data Deleted Successfully from Roundway Booking!')
+    return redirect('bookingentry')
+
+def Delete_localTrip_entry(request, id):
+    localTrip_entry = localbooking.objects.get(id=id)
+    localTrip_entry.delete()
+    messages.success(request, 'Data Deleted Successfully from Local Booking!')
+    return redirect('bookingentry')
+
+
+
 
