@@ -331,42 +331,11 @@
   </script>
 
   <script>
-    {% comment %} $(document).ready(function(){
-
-
-        $("#table_heading").text("One Way Entries")
-        $('#oneway_table').removeClass('d-none')
-
-
-        $('#oneway_button').click(function(){
-            $("#table_heading").text("One Way Entries")
-            $('#oneway_table').removeClass('d-none')
-
-            $('#roundway_table').addClass('d-none')
-            $('#local_table').addClass('d-none')
-
-        })
-
-        $('#roundway_button').click(function(){
-            $("#table_heading").text("Round Way Entries")
-            $('#roundway_table').removeClass('d-none')
-
-            $('#oneway_table').addClass('d-none')
-            $('#local_table').addClass('d-none')
-
-        })
-
-        $('#local_button').click(function(){
-            $("#table_heading").text("Local Way Entries")
-            $('#local_table').removeClass('d-none')
-
-            $('#oneway_table').addClass('d-none')
-            $('#roundway_table').addClass('d-none')
-        }) 
-    }) {% endcomment %}
 
     $(document).ready(function () {
         $("#table_heading").text("One Way Entries")
+        {% comment %} showTable('oneway_table'); {% endcomment %}
+
         // Function to show the selected table and hide others
         function showTable(tableId) {
           // Hide all tables
@@ -378,9 +347,6 @@
           // Save the selected table ID to localStorage
           localStorage.setItem('selectedTable', tableId);
     
-          // Update the table heading (optional)
-          const tableHeading = $('#' + tableId).data('table-heading');
-          $("#table_heading").text(tableHeading);
         }
     
         // On page load, check if there is a previously selected table in localStorage

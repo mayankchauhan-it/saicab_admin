@@ -48,8 +48,10 @@ def frontend(request):
         heading_content = latest_obj.heading
         print(heading_content)
         heading_content2 = latest_obj.heading2
+    
+    cars_list = cars.objects.all()
 
-    return render(request, 'page/home_front.html', {'latest_heading': heading_content, 'latest_heading2': heading_content2})
+    return render(request, 'page/home_front.html', {'latest_heading': heading_content, 'latest_heading2': heading_content2, "car_data":cars_list})
 
 def form_oneway(request):
     if request.method == "POST":

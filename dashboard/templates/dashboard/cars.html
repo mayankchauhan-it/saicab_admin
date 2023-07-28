@@ -1,6 +1,6 @@
 {% extends 'dash/templates/layouts/base.html' %}
 
-{% block title %} Home {% endblock title %}
+{% block title %} Cars {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
@@ -28,6 +28,8 @@
   
 {% endblock stylesheets %}
 
+
+
 {% block content %}
 
 <!-- Header -->
@@ -41,9 +43,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 d-flex align-items-center justify-content-between">
-                                    <h3 class="h2 text-warning"> Home Page </h3>
+                                    <h3 class="h2 text-warning"> Cars </h3>
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#exampleModalLong">Change</button>
+                                        data-target="#exampleModalLong">Add Cars</button>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +64,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0">Slider</h3>
+                            <h3 class="mb-0">Car List</h3>
                         </div>
                         <div class="col text-right">
                             <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -75,28 +77,40 @@
                         <thead class="thead-light">
                             <tr>
                                 <th style="text-align: center;" scope="col">Sr.No</th>
-                                <th style="text-align: center;" scope="col">Title1</th>
-                                <th style="text-align: center;" scope="col">Title2</th>
-                                <th style="text-align: center;" scope="col">Image</th>
+                                <th style="text-align: center;" scope="col">Car Name</th>
+                                <th style="text-align: center;" scope="col">Seating Capacity</th>
+                                <th style="text-align: center;" scope="col">Rate Per KM</th>
+                                <th style="text-align: center;" scope="col">Min. Range in KMs</th>
+                                <th style="text-align: center;" scope="col">Driver Allowance</th>
+                                <th style="text-align: center;" scope="col">Car Image</th>
                                 <th style="text-align: center;" scope="col">Update</th>
                                 <th style="text-align: center;" scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                {% for data in heading_data%}
+                                {% for data in page_obj%}
                                 <td style="text-align: center;"  scope="row">
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.heading}}
+                                    {{data.car_name}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.heading2}}
+                                    {{data.seating_capacity}}
                                 </td>
-                                {% if data.image %}
+                                <td scope="row" style="text-align: center;">
+                                    {{data.rate_par_km}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.min_range}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.driver_allowance}}
+                                </td>
+                                {% if data.car_image %}
                                     <td scope="row" style="text-align: center;">
-                                        <img src="{{ data.image.url }}" alt="Image" style="width: 150px; height: 100px; border: 1px solid black;">
+                                        <img src="{{ data.car_image.url }}" alt="Image" style="width: 150px; height: 100px; border: 1px solid black;">
                                     </td>
                                 {% else %}
                                     <td scope="row" style="text-align: center;">
@@ -113,13 +127,14 @@
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    <a href="homedatadelete/{{ data.id }}"
+                                    <a href="DeleteCar/{{ data.id }}"
                                         onclick="return confirm('Are You Sure,You want to delete this data?');"
                                         class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
                             {% endfor %}
+
 
                             {% if messages %}
                             <div class="messages">
@@ -131,6 +146,38 @@
 
                         </tbody>
                     </table>
+
+
+                    <!-- Pagination links -->
+                    <div class="pagination flex-column flex-column">
+                        <span class="step-links d-flex justify-content-between ">
+                            <div>
+                                {% if page_obj.has_previous %}
+                                    <a class='mx-2' href="?page=1">&laquo; first</a>
+                                    <a class='mx-2' href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+                            </div>
+
+                            <div class="align-item-center">
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+
+                                <span class="current">
+                                    Total {{ page_obj.paginator.count }}.
+                                    
+                                </span>
+
+                            </div>
+
+                            <div>
+                                {% if page_obj.has_next %}
+                                    <a class='mx-2' href="?page={{ page_obj.next_page_number }}">next</a>
+                                    <a class='mx-2' href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </div>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,10 +187,10 @@
     <!-- Modal Start -->
     <!-- Add Model Start -->
     <div class="modal fade" id="exampleModalLong">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change the Slider</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Car</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -154,16 +201,28 @@
                         <div class="form-group">
 
 
-                            <label for="recipient-name" class="col-form-label">Slider Heading 1 Text</label>
-                            <input type="text" class="form-control" id="headingname11" required
-                            name="headingname1" /><br />
+                            <label for="recipient-name" class="col-form-label">Car Name</label>
+                            <input type="text" class="form-control" id="carName_ID" required
+                            name="carName_name" /><br />
 
-                            <label for="recipient-name" class="col-form-label">Slider Heading 2 Text</label>
-                            <input type="text" class="form-control" id="headingname21" required
-                            name="headingname2" /><br />
+                            <label for="headingname21" class="col-form-label">Seating Capacity</label>
+                            <input type="number" class="form-control" id="seatingCapacity_ID" required
+                            name="seatingCapacity_name" /><br />
+
+                            <label for="headingname21" class="col-form-label">Rate Per KM</label>
+                            <input type="number" class="form-control" id="carRate_ID" required
+                            name="carRate_name" /><br />
+
+                            <label for="headingname21" class="col-form-label">Min. Range In KMs</label>
+                            <input type="number" class="form-control" id="carRange_ID" required
+                            name="carRange_name" /><br />
+
+                            <label for="headingname21" class="col-form-label">Driver Allowance</label>
+                            <input type="number" class="form-control" id="driverAllowance_ID" required
+                            name="driverAllowance_name" /><br />
                             
-                            <label for="image" class="col-form-label">Slider Image:</label>
-                            <input type="file" class="form-control" id="myFile11" name="myfile" /><br />
+                            <label for="image" class="col-form-label">Car Image</label>
+                            <input type="file" class="form-control" id="carImage_ID" name="carImage_name" /><br />
 
                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">

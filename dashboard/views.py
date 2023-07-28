@@ -16,7 +16,6 @@ from sai_admin.settings import EMAIL_HOST_USER
 def dashboard(request):
     return render(request, 'dash/templates/home/index_final.html')
 
-
 def loginpage(request):
     if request.method == "POST":
         email = request.POST.get('user')
@@ -35,7 +34,6 @@ def loginpage(request):
 
 
     return render(request, 'dashboard/login.html')
-
 
 def home(request):
     print(request.FILES)
@@ -58,6 +56,52 @@ def home(request):
 
     return render(request, 'dashboard/home.html', {'heading_data': heading_content})
 
+def add_car(request):
+    if request.method == 'POST':
+        car_name = request.POST.get('carName_name')
+        seating_capacity = request.POST.get('seatingCapacity_name')
+        car_rate = request.POST.get('carRate_name')
+        car_range = request.POST.get('carRange_name')
+        driver_allowance = request.POST.get('driverAllowance_name')
+        image_file = request.FILES.get('carImage_name')
+
+        obj = cars()
+        obj.car_name = car_name
+        obj.seating_capacity = seating_capacity
+        obj.rate_par_km = car_rate
+        obj.min_range = car_range
+        obj.driver_allowance = driver_allowance
+
+        if image_file:
+            obj.car_image = image_file
+        obj.save()
+
+        return redirect('add_car')
+
+    car_data = cars.objects.all()
+
+    # Number of items to show per page
+    items_per_page = 3
+
+    # Create a Paginator object
+    paginator = Paginator(car_data, items_per_page)
+
+    # Get the current page number from the request
+    page_number = request.GET.get('page')
+
+    # Get the Page object for the requested page number
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'dashboard/cars.html', {'car_data': car_data, 'page_obj': page_obj})
+    # return render(request, 'dashboard/cars.html')
+
+def delete_car(request, id):
+    car = cars.objects.get(id=id)
+    # entry = sliderupdate.objects.all()
+    car.delete()
+    messages.success(request,'Data Deleted Successfully!')
+    return redirect('add_car')
+
 def deletehomedata(request, id):
     entry = sliderupdate.objects.get(id=id)
     # entry = sliderupdate.objects.all()
@@ -65,13 +109,11 @@ def deletehomedata(request, id):
     messages.success(request,'Data Deleted Successfully!')
     return redirect('home')
 
-
 def bookingentry(request):
     onewaybooking_data = onewaybooking.objects.all()
     roundbooking_data = roundbooking.objects.all()
     localbooking_data = localbooking.objects.all()
     return render(request, 'dashboard/formentry.html', {'onewaybooking_data': onewaybooking_data,'roundbooking_data': roundbooking_data,'localbooking_data': localbooking_data })
-
 
 def Delete_singleTrip_entry(request, id):
     singleTrip_entry = onewaybooking.objects.get(id=id)

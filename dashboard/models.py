@@ -40,3 +40,12 @@ class localbooking(models.Model):
     user_email = models.CharField(max_length=255, null=True)
     pickuplocation = models.CharField(max_length=255, null=True)
     hour = models.CharField(max_length=255, null=True)
+
+
+class cars(models.Model):
+    car_name = models.CharField(max_length=255, null=True)
+    seating_capacity = models.IntegerField(null=True)
+    rate_par_km = models.IntegerField(null=True)
+    min_range = models.IntegerField(null=True)
+    driver_allowance = models.IntegerField(null=True)
+    car_image = models.ImageField(upload_to='carImage/', null=True, blank=True)

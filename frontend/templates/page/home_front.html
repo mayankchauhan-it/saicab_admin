@@ -335,20 +335,19 @@
 
         <div class="container wow fadeInUp" data-wow-delay="0.1s">
             <ul class="tabs">
-                <li class="active" rel="tab1">SWIFT DZIRE</li>
-                <li rel="tab2">ERTIGA</li>
-                <li rel="tab3">MARAZZO</li>
-                <li rel="tab4">INNOVA</li>
-                <li rel="tab5">INNOVA CRYSTA</li>
-                <li rel="tab6">TEMPO TRAVELLER</li>
+                
+                {% for car in car_data%}
+                <li {% if forloop.first %} class="active" {% endif %} rel="tab{{forloop.counter}}">{{car.car_name}}</li>
+                {% endfor %}
             </ul>
 
             <h3 class="d_active tab_drawer_heading" rel="tab1">SWIFT DZIRE</h3>
-            <div id="tab1" class="tab_content">
+            {% for car in car_data%}
+            <div id="tab{{forloop.counter}}" class="tab_content">
                 <div class="row g-4">
                     <div class="col-md-12 h-50">
                         <div class="position-relative carrer ">
-                            <img class="position-absolute img-fluid w-100 h-100" src="static/img/swift-dzire.jpg"
+                            <img class="position-absolute img-fluid w-100 h-100" src="{{ car.car_image.url }}"
                                 style="object-fit: contain;" alt="">
                         </div>
                     </div>
@@ -368,10 +367,10 @@
                                 <tr>
 
                                     <div class="agn">
-                                        <td>4 People</td>
-                                        <td>10/- Rs.</td>
-                                        <td>300 KM</td>
-                                        <td>300/- Rs. (Per Day)</td>
+                                        <td>{{car.seating_capacity}}</td>
+                                        <td>{{car.rate_par_km}}/- Rs.</td>
+                                        <td>{{car.min_range}} KM</td>
+                                        <td>{{car.driver_allowance}}/- Rs. (Per Day)</td>
                                         <td>Tall Parking Extra </td>
                                     </div>
                                 </tr>
@@ -450,543 +449,10 @@
                 </div>
 
             </div>
+            {% endfor %}
 
 
-            <!-- #tab1 -->
-            <h3 class="tab_drawer_heading" rel="tab2">ERTIGA</h3>
-            <div id="tab2" class="tab_content">
-                <div class="row g-4">
-                    <div class="col-md-10 mx-auto h-50">
-                        <div class="position-relative carrer">
-                            <img class="position-absolute img-fluid w-100 h-100" src="static/img/Ertiga.jpg"
-                                style="object-fit: contain;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col">Seating Capacity</th>
-                                    <th scope="col">Rate Per (KM)</th>
-                                    <th scope="col">Minimum KM Range</th>
-                                    <th scope="col">Driver Allowance</th>
-                                    <th scope="col">Other</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>6 People</td>
-                                    <td>13/- Rs.</td>
-                                    <td>300 KM</td>
-                                    <td>300/- Rs. (Per Day)</td>
-                                    <td>Tall Parking Extra </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-primary py-3 px-5 mt-3 d-flex align-items-center mx-auto"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                            Book Now<i class="fa fa-arrow-right ms-3"></i></a>
-                        </button>
-
-                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5"
-                                            data-wow-delay="0.6s">
-                                            <h1 class="text-white mb-4">Book Cab</h1>
-                                            <form>
-                                                <div class="row g-3">
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Your Name" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="email" class="form-control border-0"
-                                                            placeholder="Your Email" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Pickup Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Drop-off Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="date" id="date5" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Date" data-target="#date5"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="time" id="time5" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Time" data-target="#time5"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <select class="form-select border-0" style="height: 55px;">
-                                                            <option selected>Return</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-secondary w-100 py-3" type="submit">Book
-                                                            Now</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #tab2 -->
-            <h3 class="tab_drawer_heading" rel="tab3">MARAZZO</h3>
-            <div id="tab3" class="tab_content">
-                <div class="row g-4">
-                    <div class="col-md-12 h-50">
-                        <div class="position-relative carrer">
-                            <img class="position-absolute img-fluid w-100 h-100" src="static/img/marrazo.jpg"
-                                style="object-fit: contain;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col">Seating Capacity</th>
-                                    <th scope="col">Rate Per (KM)</th>
-                                    <th scope="col">Minimum KM Range</th>
-                                    <th scope="col">Driver Allowance</th>
-                                    <th scope="col">Other</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>7 People</td>
-                                    <td>16/- Rs.</td>
-                                    <td>300 KM</td>
-                                    <td>300/- Rs. (Per Day)</td>
-                                    <td>Tall Parking Extra </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-primary py-3 px-5 mt-3 d-flex align-items-center mx-auto"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                            Book Now<i class="fa fa-arrow-right ms-3"></i></a>
-                        </button>
-
-
-                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel4">Modal
-                                            title
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5"
-                                            data-wow-delay="0.6s">
-                                            <h1 class="text-white mb-4">Book Cab</h1>
-                                            <form>
-                                                <div class="row g-3">
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Your Name" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="email" class="form-control border-0"
-                                                            placeholder="Your Email" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Pickup Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Drop-off Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="date" id="date6" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Date" data-target="#date6"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="time" id="time6" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Time" data-target="#time6"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <select class="form-select border-0" style="height: 55px;">
-                                                            <option selected>Return</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-secondary w-100 py-3" type="submit">Book
-                                                            Now</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- #tab3 -->
-            <h3 class="tab_drawer_heading" rel="tab4">INNOVA</h3>
-            <div id="tab4" class="tab_content">
-                <div class="row g-4">
-                    <div class="col-md-10 mx-auto h-50">
-                        <div class="position-relative carrer">
-                            <img class="position-absolute img-fluid w-100 h-100" src="static/img/innova.png"
-                                style="object-fit: contain;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col">Seating Capacity</th>
-                                    <th scope="col">Rate Per (KM)</th>
-                                    <th scope="col">Minimum KM Range</th>
-                                    <th scope="col">Driver Allowance</th>
-                                    <th scope="col">Other</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>7 People</td>
-                                    <td>16/- Rs.</td>
-                                    <td>300 KM</td>
-                                    <td>300/- Rs. (Per Day)</td>
-                                    <td>Tall Parking Extra </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <button type="button" class="btn btn-primary py-3 px-5 mt-3 d-flex align-items-center mx-auto"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal4">
-                            Book Now<i class="fa fa-arrow-right ms-3"></i></a>
-                        </button>
-
-                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5"
-                                            data-wow-delay="0.6s">
-                                            <h1 class="text-white mb-4">Book Cab</h1>
-                                            <form>
-                                                <div class="row g-3">
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Your Name" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="email" class="form-control border-0"
-                                                            placeholder="Your Email" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Pickup Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Drop-off Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="date" id="date7" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Date" data-target="#date7"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="time" id="time7" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Time" data-target="#time7"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <select class="form-select border-0" style="height: 55px;">
-                                                            <option selected>Return</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-secondary w-100 py-3" type="submit">Book
-                                                            Now</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <h3 class="tab_drawer_heading" rel="tab5">INNOVA CRYSTA</h3>
-            <div id="tab5" class="tab_content">
-                <div class="row">
-                    <div class="col-md-10 mx-auto h-25">
-                        <div class="position-relative carrer">
-                            <img class="position-absolute img-fluid w-100 h-100" src="static/img/innova-crysta.png"
-                                style="object-fit: contain;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <table class="table mt-5">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col">Seating Capacity</th>
-                                    <th scope="col">Rate Per (KM)</th>
-                                    <th scope="col">Minimum KM Range</th>
-                                    <th scope="col">Driver Allowance</th>
-                                    <th scope="col">Other</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>7 People</td>
-                                    <td>18/- Rs.</td>
-                                    <td>300 KM</td>
-                                    <td>300/- Rs. (Per Day)</td>
-                                    <td>Tall Parking Extra </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <button type="button" class="btn btn-primary py-3 px-5 mt-3 d-flex align-items-center mx-auto"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal5">
-                            Book Now<i class="fa fa-arrow-right ms-3"></i></a>
-                        </button>
-
-
-                        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5"
-                                            data-wow-delay="0.6s">
-                                            <h1 class="text-white mb-4">Book Cab</h1>
-                                            <form>
-                                                <div class="row g-3">
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Your Name" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="email" class="form-control border-0"
-                                                            placeholder="Your Email" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Pickup Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Drop-off Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="date" id="date8" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Date" data-target="#date8"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="time" id="time8" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Time" data-target="#time8"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <select class="form-select border-0" style="height: 55px;">
-                                                            <option selected>Return</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-secondary w-100 py-3" type="submit">Book
-                                                            Now</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <h3 class="tab_drawer_heading" rel="tab6">TEMPO TRAVELLER</h3>
-            <div id="tab6" class="tab_content">
-                <div class="row ">
-                    <div class="col-md-10 mx-auto h-50">
-                        <div class="position-relative carrer">
-                            <img class="position-absolute img-fluid w-100 h-100" src="static/img/tempo-traveller.jpg"
-                                style="object-fit: contain;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col">Seating Capacity</th>
-                                    <th scope="col">Rate Per (KM)</th>
-                                    <th scope="col">Minimum KM Range</th>
-                                    <th scope="col">Driver Allowance</th>
-                                    <th scope="col">Other</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>17 People</td>
-                                    <td>26/- Rs.</td>
-                                    <td>300 KM</td>
-                                    <td>300/- Rs. (Per Day)</td>
-                                    <td>Tall Parking Extra </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <button type="button" class="btn btn-primary py-3 px-5 mt-3 d-flex align-items-center mx-auto"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal6">
-                            Book Now<i class="fa fa-arrow-right ms-3"></i></a>
-                        </button>
-
-
-                        <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5"
-                                            data-wow-delay="0.6s">
-                                            <h1 class="text-white mb-4">Book Cab</h1>
-                                            <form>
-                                                <div class="row g-3">
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Your Name" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="email" class="form-control border-0"
-                                                            placeholder="Your Email" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Pickup Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <input type="text" class="form-control border-0"
-                                                            placeholder="Drop-off Location" style="height: 55px;">
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="date" id="date9" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Date" data-target="#date9"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="time" id="time9" data-target-input="nearest">
-                                                            <input type="text"
-                                                                class="form-control border-0 datetimepicker-input"
-                                                                placeholder="Pickup Time" data-target="#time9"
-                                                                data-toggle="datetimepicker" style="height: 55px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <select class="form-select border-0" style="height: 55px;">
-                                                            <option selected>Return</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-secondary w-100 py-3" type="submit">Book
-                                                            Now</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
 
         </div>
 
@@ -1941,7 +1407,7 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(".tab_content").hide();
     $(".tab_content:first").show();
@@ -1949,17 +1415,21 @@
     /* if in tab mode */
     $("ul.tabs li").click(function () {
 
-        $(".tab_content").hide();
-        var activeTab = $(this).attr("rel");
-        $("#" + activeTab).fadeIn();
+        $('.tabs li').on('click', function() {
+            // Remove the 'active' class from all tabs and tab contents
+            $('.tabs li').removeClass('active');
+            $('.tab_content').removeClass('active');
+            $('.tab_content').css('display','none')
 
-        $("ul.tabs li").removeClass("active");
-        $(this).addClass("active");
-
-        $(".tab_drawer_heading").removeClass("d_active");
-        $(".tab_drawer_heading[rel^='" + activeTab + "']").addClass("d_active");
+            // Add the 'active' class to the clicked tab and corresponding tab content
+            $(this).addClass('active');
+            const tabId = $(this).attr('rel');
+            $('#' + tabId).addClass('active').show()
+        });
 
     });
+
+
     /* if in drawer mode */
     $(".tab_drawer_heading").click(function () {
 
@@ -1999,6 +1469,9 @@
     spinner();
 </script>
 
+
+
+{% comment %} Location Search JS {% endcomment %}
 <script>
     $(document).ready(function () {
         $("#Pickup").autocomplete({
