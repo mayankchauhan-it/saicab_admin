@@ -1,14 +1,14 @@
 <form id="localway" method="post" action="{% url 'form_localway' %}">
     {% csrf_token %}
     <div class="row g-3">
-        <div class="col-12 col-sm-6">
+        {% comment %} <div class="col-12 col-sm-6">
             <input type="text" class="form-control"
                 placeholder="Your Name" style="height: 55px;" name="yourname">
         </div>
         <div class="col-12 col-sm-6">
             <input type="text" class="form-control"
                 placeholder="Your Email" style="height: 55px;" name="youremail">
-        </div>
+        </div> {% endcomment %}
         <div class="col-12 col-sm-12">
             <input type="text" class="form-control"
                 placeholder="Pickup Location" style="height: 55px;" name="yourlocation">
@@ -153,7 +153,7 @@
                                                                     type="text"
                                                                     class="form-control border-0"
                                                                     placeholder="First Name"
-                                                                    style="height: 55px;">
+                                                                    style="height: 55px;" name='firstname'>
                                                             </div>
                                                             <div
                                                                 class="col-12 col-sm-6">
@@ -161,7 +161,7 @@
                                                                     type="text"
                                                                     class="form-control border-0"
                                                                     placeholder="Last Name"
-                                                                    style="height: 55px;">
+                                                                    style="height: 55px;" name='lastname'>
                                                             </div>
                                                             <div
                                                                 class="col-12 col-sm-6">
@@ -169,7 +169,7 @@
                                                                     type="text"
                                                                     class="form-control border-0"
                                                                     placeholder="Your Email"
-                                                                    style="height: 55px;">
+                                                                    style="height: 55px;" name='youremail'>
                                                             </div>
                                                             <div
                                                                 class="col-12 col-sm-6">

@@ -79,6 +79,7 @@
                                 <th style="text-align: center;" scope="col">Email</th>
                                 <th style="text-align: center;" scope="col">Pick Up Location</th>
                                 <th style="text-align: center;" scope="col">Drop Off Location</th>
+                                <th style="text-align: center;" scope="col">Booking Date</th>
                                 <th style="text-align: center;" scope="col">Delete</th>
                             </tr>
                         </thead>
@@ -89,11 +90,11 @@
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.usernamedata}}
+                                    {{data.user_name}}
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    {{data.emaildata}}
+                                    {{data.user_email}}
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
@@ -102,6 +103,10 @@
 
                                 <td scope="row" style="text-align: center;">
                                     {{data.dropofflocation}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.pickup_date}}
                                 </td>
 
                                 <td scope="row" style="text-align: center;">

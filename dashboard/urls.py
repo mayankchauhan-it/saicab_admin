@@ -12,6 +12,7 @@ urlpatterns = [
     path('booking', views.formtest, name='formtest'),
     path('bookingentry', views.bookingentry, name='bookingentry'),
     path('bookingdatadelete/<int:id>', views.deletebookingdata, name='deletebookingdata'),
+    path('deleteformentry', views.deleteformdata, name='deleteformdata'),
 
 
 

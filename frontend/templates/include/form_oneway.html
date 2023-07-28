@@ -2,14 +2,6 @@
     {% csrf_token %}
     <div class="row g-3">
         <div class="col-12 col-sm-6">
-            <input type="text" class="form-control"
-                placeholder="Your Name" name="yourname" style="height: 55px;">
-        </div>
-        <div class="col-12 col-sm-6">
-            <input type="email" class="form-control "
-                placeholder="Your Email" name="youremail" style="height: 55px;">
-        </div>
-        <div class="col-12 col-sm-6">
             <input type="text" class="form-control ui-autocomplete-input "
                 placeholder="Pickup Location" name="pickup" style="height: 55px;" id="Pickup">
         </div>
@@ -18,19 +10,19 @@
                 placeholder="Drop-off Location" name="dropoff"style="height: 55px;" id="dropoff">
         </div>
         <div class="col-12 col-sm-6">
-            <div class="date" id="date1" data-target-input="nearest">
+            <div class="date" id="date4" data-target-input="nearest">
                 <input type="date"
                     class="form-control border-0 datetimepicker-input"
-                    placeholder="Pickup Date" data-target="#date1"
-                    data-toggle="datetimepicker" style="height: 55px;" name="date">
-            </div>
+                    placeholder="Pickup Date" 
+                     style="height: 55px;" name="date">
+            </div>  
         </div>
         <div class="col-12 col-sm-6">
             <div class="time" id="time1" data-target-input="nearest">
                 <input type="time"
                     class="form-control datetimepicker-input"
-                    placeholder="Pickup Time" data-target="#time1"
-                    data-toggle="datetimepicker" style="height: 55px;" name="time">
+                    placeholder="Pickup Time" 
+                     style="height: 55px;" name="time">
             </div>
         </div>
 

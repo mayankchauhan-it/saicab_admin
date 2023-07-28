@@ -15,9 +15,6 @@ class sliderupdate(models.Model):
             self.image = new_image
 
         self.save()
-    
-
-
 
 
 class formdata(models.Model):
@@ -25,4 +22,11 @@ class formdata(models.Model):
     emaildata = models.CharField(max_length=255, null=True)
     pickuplocation = models.CharField(max_length=255, null=True)
     dropofflocation = models.CharField(max_length=255, null=True)
-    
+
+
+class onewaybooking(models.Model):
+    user_name = models.CharField(max_length=255, null=True)
+    user_email = models.CharField(max_length=255, null=True)
+    pickuplocation = models.CharField(max_length=255, null=True)
+    dropofflocation = models.CharField(max_length=255, null=True)
+    pickup_date = models.CharField(max_length=255,null=True)

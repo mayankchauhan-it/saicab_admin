@@ -97,7 +97,7 @@ def formtest(request):
     return render(request, 'dashboard/formtest.html')
 
 def bookingentry(request):
-    form_data = formdata.objects.all()
+    form_data = onewaybooking.objects.all()
 
     return render(request, 'dashboard/formentry.html', {'formdata_list': form_data})
 
@@ -105,5 +105,12 @@ def deletebookingdata(request, id):
     entry = formdata.objects.get(id=id)
     entry.delete()
     messages.success(request,'Data Deleted Successfully!')
+    return redirect('bookingentry')
+
+
+def deleteformdata(request):
+    entry = onewaybooking.objects.all()
+    entry.delete()
+
     return redirect('bookingentry')
 

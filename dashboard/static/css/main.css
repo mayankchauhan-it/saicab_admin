@@ -535,7 +535,6 @@ iframe {
 }
 
 
-
 .footer-mid-wrap:before {
   background-image: url(image/city-skiline.png);
   background-size: 100%;
@@ -547,7 +546,7 @@ iframe {
   position: absolute;
   left: 0;
   bottom: 0;
-  z-index: -1;
+  z-index: 2;
   overflow: hidden;
 }
 
@@ -587,7 +586,7 @@ iframe {
   animation: running-anim 30s linear infinite;
 }
  
-.running-taxi .taxi-3 {
+/* .running-taxi .taxi-3 {
   background-image: url(bg-image/truck-3.png);
   background-repeat: no-repeat;
   background-position: right bottom;
@@ -598,7 +597,7 @@ iframe {
   right: 70%;
   bottom: 0;
   animation: running-anim-left 35s linear infinite;
-} 
+}  */
 @-moz-keyframes running-anim {
   0% {
     right: -30%;
