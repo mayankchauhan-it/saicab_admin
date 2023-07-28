@@ -550,6 +550,7 @@ iframe {
   z-index: -1;
   overflow: hidden;
 }
+
 .running-taxi {
   overflow: hidden;
   position: absolute;

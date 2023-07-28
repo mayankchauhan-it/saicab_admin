@@ -7,7 +7,7 @@ from django.conf import settings
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', include('dashboard.urls')),
+    path('admin/', include('dashboard.urls')),
     path('', include('frontend.urls')),
 
 ]
