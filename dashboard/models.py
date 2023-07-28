@@ -17,16 +17,26 @@ class sliderupdate(models.Model):
         self.save()
 
 
-class formdata(models.Model):
-    usernamedata = models.CharField(max_length=255, null=True)
-    emaildata = models.CharField(max_length=255, null=True)
-    pickuplocation = models.CharField(max_length=255, null=True)
-    dropofflocation = models.CharField(max_length=255, null=True)
-
-
 class onewaybooking(models.Model):
     user_name = models.CharField(max_length=255, null=True)
     user_email = models.CharField(max_length=255, null=True)
     pickuplocation = models.CharField(max_length=255, null=True)
     dropofflocation = models.CharField(max_length=255, null=True)
     pickup_date = models.CharField(max_length=255,null=True)
+    pickup_time = models.CharField(max_length=255, null=True)
+
+class roundbooking(models.Model):
+    user_name = models.CharField(max_length=255, null=True)
+    user_email = models.CharField(max_length=255, null=True)
+    pickuplocation = models.CharField(max_length=255, null=True)
+    dropofflocation = models.CharField(max_length=255, null=True)
+    pickup_date = models.CharField(max_length=255,null=True)
+    pickup_time = models.CharField(max_length=255, null=True)
+    dropoff_date = models.CharField(max_length=255,null=True)
+    dropoff_time = models.CharField(max_length=255, null=True)
+    
+class localbooking(models.Model):
+    user_name = models.CharField(max_length=255, null=True)
+    user_email = models.CharField(max_length=255, null=True)
+    pickuplocation = models.CharField(max_length=255, null=True)
+    hour = models.CharField(max_length=255, null=True)

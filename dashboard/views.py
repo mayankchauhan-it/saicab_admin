@@ -68,49 +68,23 @@ def deletehomedata(request, id):
     return redirect('home')
 
 
-def formtest(request):
-    if request.method == 'POST':
-        username = request.POST['name']
-        email = request.POST['email']
-        # subject = request.POST['subject']
-        # usermessage = request.POST['message']
-
-        pickuplocation = request.POST['pickuplocation_name']
-        dropofflocation = request.POST['dropofflocation_name']
-
-        obj2 = formdata()
-        obj2.usernamedata = username
-        obj2.emaildata = email
-        obj2.pickuplocation = pickuplocation
-        obj2.dropofflocation = dropofflocation
-        obj2.save()
-    
-        # Send the email
-        subject = f'New Booking from {username}'
-        email_message = f'Name: {username}\nEmail: {email}\nPick-Up Date: {pickuplocation}\nDrop-Off Location: {dropofflocation}'
-        
-        email = EmailMessage(subject, email_message, to=[EMAIL_HOST_USER])
-        email.send()
-
-        return redirect("formtest") 
-
-    return render(request, 'dashboard/formtest.html')
-
 def bookingentry(request):
-    form_data = onewaybooking.objects.all()
+    onewaybooking_data = onewaybooking.objects.all()
+    roundbooking_data = roundbooking.objects.all()
+    localbooking_data = localbooking.objects.all()
+    return render(request, 'dashboard/formentry.html', {'onewaybooking_data': onewaybooking_data,'roundbooking_data': roundbooking_data,'localbooking_data': localbooking_data })
 
-    return render(request, 'dashboard/formentry.html', {'formdata_list': form_data})
 
-def deletebookingdata(request, id):
-    entry = formdata.objects.get(id=id)
-    entry.delete()
+def delete_bookingata(request,id):
+    oneway_entry = onewaybooking.objects.get(id=id)
+    oneway_entry.delete()
+
+    roundway_entry = roundbooking.objects.get(id=id)
+    roundway_entry.delete()
+
+    local_entry = localbooking.objects.get(id=id)
+    local_entry.delete()
+
     messages.success(request,'Data Deleted Successfully!')
-    return redirect('bookingentry')
-
-
-def deleteformdata(request):
-    entry = onewaybooking.objects.all()
-    entry.delete()
-
     return redirect('bookingentry')
 

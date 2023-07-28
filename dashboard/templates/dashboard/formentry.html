@@ -62,14 +62,18 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0">Booking Entries</h3>
+                            <h3 id="table_heading" class="mb-0">Booking Entries</h3>
                         </div>
                         <div class="col text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            <button type="button" id="oneway_button" class="btn btn-primary">One Way</button>
+                            <button type="button" id="roundway_button" class="btn btn-primary">Round Way</button>
+                            <button type="button" id="local_button" class="btn btn-primary">Local Way</button>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+
+                <!-- One Way Table -->
+                <div id="oneway_table" class="table-responsive d-none">
                     <!-- Projects table -->
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
@@ -85,7 +89,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                {% for data in formdata_list%}
+                                {% for data in onewaybooking_data%}
                                 <td style="text-align: center;"  scope="row">
                                     {{forloop.counter}}
                                 </td>
@@ -110,7 +114,141 @@
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    <a href="/bookingdatadelete/{{ data.id }}"
+                                    <a href="deletebookingentry/{{ data.id }}"
+                                        onclick="return confirm('Are You Sure,You want to delete this data?');"
+                                        class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                <div{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Round Way Table -->
+                <div id="roundway_table" class="table-responsive d-none">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="text-align: center;" scope="col">Sr.No</th>
+                                <th style="text-align: center;" scope="col">Name</th>
+                                <th style="text-align: center;" scope="col">Email</th>
+                                <th style="text-align: center;" scope="col">Pick Up Location</th>
+                                <th style="text-align: center;" scope="col">Drop Off Location</th>
+                                <th style="text-align: center;" scope="col">Pick Up Date</th>
+                                <th style="text-align: center;" scope="col">Pick Up Time</th>
+                                <th style="text-align: center;" scope="col">Drop Off Date</th>
+                                <th style="text-align: center;" scope="col">Drop Off Time</th>
+                                <th style="text-align: center;" scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for data in roundbooking_data%}
+                                <td style="text-align: center;"  scope="row">
+                                    {{forloop.counter}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.user_name}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.user_email}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.pickuplocation}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.dropofflocation}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.pickup_date}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.pickup_time}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.dropoff_date}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.dropoff_time}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    <a href="deletebookingentry/{{ data.id }}"
+                                        onclick="return confirm('Are You Sure,You want to delete this data?');"
+                                        class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                <div{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Local Table -->
+                <div id="local_table" class="table-responsive d-none">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="text-align: center;" scope="col">Sr.No</th>
+                                <th style="text-align: center;" scope="col">Name</th>
+                                <th style="text-align: center;" scope="col">Email</th>
+                                <th style="text-align: center;" scope="col">Pick Up Location</th>
+                                <th style="text-align: center;" scope="col">Hour</th>
+                                <th style="text-align: center;" scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for data in localbooking_data%}
+                                <td style="text-align: center;"  scope="row">
+                                    {{forloop.counter}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.user_name}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.user_email}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.pickuplocation}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    {{data.hour}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    <a href="deletebookingentry/{{ data.id }}"
                                         onclick="return confirm('Are You Sure,You want to delete this data?');"
                                         class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
                                     </a>
@@ -190,6 +328,42 @@
   
     // Call the function to dismiss messages when the page loads
     document.addEventListener('DOMContentLoaded', dismissMessages);
+  </script>
+
+  <script>
+    $(document).ready(function(){
+
+
+        $("#table_heading").text("One Way Entries")
+        $('#oneway_table').removeClass('d-none')
+
+
+        $('#oneway_button').click(function(){
+            $("#table_heading").text("One Way Entries")
+            $('#oneway_table').removeClass('d-none')
+
+            $('#roundway_table').addClass('d-none')
+            $('#local_table').addClass('d-none')
+
+        })
+
+        $('#roundway_button').click(function(){
+            $("#table_heading").text("Round Way Entries")
+            $('#roundway_table').removeClass('d-none')
+
+            $('#oneway_table').addClass('d-none')
+            $('#local_table').addClass('d-none')
+
+        })
+
+        $('#local_button').click(function(){
+            $("#table_heading").text("Local Way Entries")
+            $('#local_table').removeClass('d-none')
+
+            $('#oneway_table').addClass('d-none')
+            $('#roundway_table').addClass('d-none')
+        })
+    })
   </script>
   
   

@@ -99,6 +99,18 @@ def form_roundway(request):
         emailid = request.POST.get('emailid')
         phonenumber = request.POST.get('phonenumber')
         comment = request.POST.get('comment')
+
+
+        form_obj = roundbooking()
+        form_obj.user_name = f"{firstname} {lasttname}"
+        form_obj.user_email = emailid
+        form_obj.pickuplocation = pickup
+        form_obj.dropofflocation = dropoff
+        form_obj.pickup_date = pickupdate
+        form_obj.pickup_time = pickuptime
+        form_obj.dropoff_date = dropoffdate
+        form_obj.dropoff_time = dropofftime
+        form_obj.save()
         
          # Send the email
         subject = f"New Booking from {firstname} {lasttname}"
@@ -120,11 +132,18 @@ def form_localway(request):
         lastname = request.POST.get('lastname')
         youremail = request.POST.get('youremail')
         location = request.POST.get('yourlocation')
-        hour = request.POST.get('hour')
+        hour_required = request.POST.get('hour')
+
+        form_obj = localbooking()
+        form_obj.user_name = f"{firstname} {lastname}"
+        form_obj.user_email = youremail
+        form_obj.pickuplocation = location
+        form_obj.hour = hour_required
+        form_obj.save()
         
          # Send the email
         subject = f"New Booking from {firstname} {lastname}"
-        email_message = f"""Name: <strong> {firstname}{lastname}</strong> <br>Email: <strong>{youremail}</strong> <br>Locaiton: <strong>{location}</strong><br>Hour: <strong>{hour}</strong><br>"""
+        email_message = f"""Name: <strong> {firstname}{lastname}</strong> <br>Email: <strong>{youremail}</strong> <br>Hour: <strong>{location}</strong><br>Hour: <strong>{hour_required}</strong><br>"""
 
         email = EmailMessage(subject, email_message, to=[EMAIL_HOST_USER])
         email.content_subtype = "html"
