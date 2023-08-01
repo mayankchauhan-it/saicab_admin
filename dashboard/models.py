@@ -49,3 +49,23 @@ class cars(models.Model):
     min_range = models.IntegerField(null=True)
     driver_allowance = models.IntegerField(null=True)
     car_image = models.ImageField(upload_to='carImage/', null=True, blank=True)
+
+
+
+class rides(models.Model):
+    ride_start = models.CharField(max_length=255, null=True)
+    ride_end = models.CharField(max_length=255, null=True)
+    ride_type = models.CharField(max_length=255, null=True)
+    sedan_price = models.IntegerField(null=True)
+    suv_price = models.IntegerField(null=True)
+
+
+
+class about(models.Model):
+    about_title = models.CharField(max_length=255, null=True)
+    about_desc1 = models.CharField(max_length=1000, null=True)
+    about_desc2 = models.TextField(null=True)
+    vision = models.CharField(max_length=500, null=True)
+    mission = models.CharField(max_length=500, null=True)
+
+    image = models.ImageField(upload_to='about/', null=True, blank=True)

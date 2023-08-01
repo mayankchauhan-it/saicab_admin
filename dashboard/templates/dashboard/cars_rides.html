@@ -1,0 +1,250 @@
+{% extends 'dash/templates/layouts/base.html' %}
+
+{% block title %} Car Rides {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+    .messages-container {
+      position: fixed;
+      top: 10px;
+      z-index: 9999;
+    }
+  
+    .messages div {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 16px;
+      {% comment %} list-style: none; {% endcomment %}
+    }
+  
+    /* Style the success message with a green background */
+    .messages div.success {
+      background-color: #5cb85c;
+    }
+  </style>
+  
+{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="card card-stats">
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <h3 class="h2 text-warning"> Rides </h3>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                                        data-target="#exampleModalLong">Add Rides</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">Ride List</h3>
+                        </div>
+                        <div class="col text-right">
+                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th style="text-align: center;" scope="col">Sr.No</th>
+                                <th style="text-align: center;" scope="col">Starting Location</th>
+                                <th style="text-align: center;" scope="col">Ending Location</th>
+                                <th style="text-align: center;" scope="col">Ride Type</th>
+                                <th style="text-align: center;" scope="col">Sedan Price</th>
+                                <th style="text-align: center;" scope="col">SUV Price</th>
+                                <th style="text-align: center;" scope="col">Update</th>
+                                <th style="text-align: center;" scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% for data in page_obj%}
+                                <td style="text-align: center;"  scope="row">
+                                    {{forloop.counter}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.ride_start}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.ride_end}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.ride_type}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.sedan_price}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.suv_price}}
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    <button type="button" class="btn w-md btn-warning"
+                                        data-toggle="modal" data-target="#Update{{ data.id }}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                </td>
+
+                                <td scope="row" style="text-align: center;">
+                                    <a href="DeleteRide/{{ data.id }}"
+                                        onclick="return confirm('Are You Sure,You want to delete this data?');"
+                                        class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+
+                            {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                <div{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+
+
+                    <!-- Pagination links -->
+                    <div class="pagination flex-column flex-column">
+                        <span class="step-links d-flex justify-content-between ">
+                            <div>
+                                {% if page_obj.has_previous %}
+                                    <a class='mx-2' href="?page=1">&laquo; first</a>
+                                    <a class='mx-2' href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+                            </div>
+
+                            <div class="align-item-center">
+                                <span class="current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+
+                                <span class="current">
+                                    Total {{ page_obj.paginator.count }}.
+                                    
+                                </span>
+
+                            </div>
+
+                            <div>
+                                {% if page_obj.has_next %}
+                                    <a class='mx-2' href="?page={{ page_obj.next_page_number }}">next</a>
+                                    <a class='mx-2' href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                {% endif %}
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Start -->
+    <!-- Add Model Start -->
+    <div class="modal fade" id="exampleModalLong">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Ride</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token%}
+                        <div class="form-group">
+
+
+                            <label for="recipient-name" class="col-form-label">Start Location</label>
+                            <input type="text" class="form-control" id="startLocation_ID" required
+                            name="startLocation_name" /><br />
+
+                            <label for="headingname21" class="col-form-label">End Location</label>
+                            <input type="text" class="form-control" id="endLocation_ID" required
+                            name="endLocation_name" /><br />
+
+                            <label for="headingname21" class="col-form-label">Ride Type</label>
+                            <select class="form-control" id="rideType_ID" required name="rideType_name">
+                                <option >One Way</option>
+                                <option >Round Way</option>
+                                <!-- Add more options as needed -->
+                            </select><br />
+
+                            <label for="headingname21" class="col-form-label">Sedan Price</label>
+                            <input type="number" class="form-control" id="sendaPrice_ID" required
+                            name="sendaPrice_name" /><br />
+
+                            <label for="headingname21" class="col-form-label">SUV Price</label>
+                            <input type="number" class="form-control" id="suvPrice_ID" required
+                            name="suvPrice_name" /><br />
+                            
+                            <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "dash/templates/includes/footer.html" %}
+
+
+      <!-- Specific JS goes HERE --> 
+  {% block javascripts %}
+
+  {% comment %} <script>
+    // Function to automatically dismiss messages after 2 seconds
+    document.addEventListener(function () {
+        const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
+
+        for (const divId of divIds) {
+            CKEDITOR.replace(divId);
+        }
+    });
+  </script> {% endcomment %}
+  
+  
+  {% endblock javascripts %}
+
+
+</div>
+
+{% endblock content %}
