@@ -98,7 +98,7 @@
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.contact_Address}}
+                                    {{data.contact_Address|striptags}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
                                     {{data.contact_Email}}
@@ -189,9 +189,9 @@
                         <div class="form-group">
 
 
-                            <label for="recipient-name" class="col-form-label">Address</label>
-                            <input type="text" class="form-control" id="address_ID" required
-                            name="address_name" /><br />
+                            <label for="recipient-name" class="col-form-label ">Address</label>
+                            <textarea name="address_name" id="address_ID" class="form-control ckeditor-textarea"></textarea><br />
+
 
                             <label for="headingname21" class="col-form-label">Email ID</label>
                             <input type="email" class="form-control" id="email_ID" required

@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class sliderupdate(models.Model):
@@ -56,8 +57,8 @@ class rides(models.Model):
     suv_price = models.IntegerField(null=True)
 
 class about(models.Model):
-    about_title = models.CharField(max_length=255, null=True)
-    about_desc1 = models.CharField(max_length=1000, null=True)
+    about_title = models.JSONField()
+    about_desc1 = RichTextField(max_length=1000, null=True)
     about_desc2 = models.TextField(null=True)
     vision = models.CharField(max_length=500, null=True)
     mission = models.CharField(max_length=500, null=True)

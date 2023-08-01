@@ -17,7 +17,6 @@
       border-radius: 4px;
       color: #fff;
       font-size: 16px;
-      {% comment %} list-style: none; {% endcomment %}
     }
   
     /* Style the success message with a green background */
@@ -100,19 +99,19 @@
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.about_title}}
+                                    {{ data.about_title}}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.about_desc1}}
+                                    {{data.about_desc1|striptags}}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.about_desc2}}
+                                    {{data.about_desc2|striptags}}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.vision|safe }}
+                                    {{data.vision|striptags }}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.mission}}
+                                    {{data.mission|striptags}}
                                 </td>
                                 {% if data.image %}
                                     <td scope="row" style="text-align: center;">
@@ -140,15 +139,6 @@
                                 </td>
                             </tr>
                             {% endfor %}
-
-
-                            {% if messages %}
-                            <div class="messages">
-                                {% for message in messages %}
-                                <div{% if message %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
 
                         </tbody>
                     </table>
@@ -209,20 +199,16 @@
                             name="heading_name" /><br />
 
                             <label for="headingname21" class="col-form-label">Description</label>
-                            <input type="text" class="form-control ckeditor-textarea" id="description_ID" required
-                            name="description_name" /><br />
+                            <textarea name="description_name" id="description_ID" class="form-control ckeditor-textarea"></textarea><br />
 
                             <label for="headingname21" class="col-form-label">Description 2</label>
-                            <input type="text" class="form-control ckeditor-textarea" id="description2_ID" 
-                            name="description2_name" /><br />
+                            <textarea name="description2_name" id="description2_ID" class="form-control ckeditor-textarea"></textarea><br />
 
                             <label for="headingname21" class="col-form-label">Vision</label>
-                            <input type="text" class="form-control ckeditor-textarea text-limit" id="vision_ID" required
-                            name="vision_name" /><br />
+                            <textarea name="vision_name" id="vision_ID" class="form-control ckeditor-textarea"></textarea><br />
 
                             <label for="headingname21" class="col-form-label">Mission</label>
-                            <input type="text" class="form-control ckeditor-textarea text-limit" id="mission_ID" required
-                            name="mission_name" /><br />
+                            <textarea name="mission_name" id="mission_ID" class="form-control ckeditor-textarea"></textarea><br />
 
                             <label for="image" class="col-form-label">Image</label>
                             <input type="file" class="form-control" id="about_iamge11" name="about_iamge" /><br />
@@ -254,15 +240,7 @@
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
 
-{% comment %} <script>
-// Function to automatically dismiss messages after 2 seconds
-document.addEventListener(function () {
-    const divIds = ['description_ID', 'description2_ID']; // Add more IDs as needed
 
-    for (const divId of divIds) {
-        CKEDITOR.replace(divId);
-    }
-});
-</script> {% endcomment %}
+
 
 {% endblock javascripts %}

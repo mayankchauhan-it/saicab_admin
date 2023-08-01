@@ -1,4 +1,4 @@
-
+{% for data in about_list  %}
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 h-50">
@@ -10,101 +10,13 @@
                 </div>
                 <div class="col-lg-6">
                     <h6 class="text-primary text-uppercase">// About Us //</h6>
-                    <h1 class="mb-4"><span class="text-primary">Guaranteed</span> Safe Journey</h1>
-                    <p class="mb-4">All the taxis available with us all regularly maintained and checked to ensure
-                        their
-                        efficacy is maintained and their
-                        performance is retained. Our fleets are equipped with all the modern features to <b>provide
-                            maximum
-                            comfort to our
-                            customers.</b> We assure you of a safe, comfortable, and convenient journey with our
-                        specialized
-                        taxi service.
+                    <h1 class="mb-4"><span class="text-primary">{{data.about_title|safe}}</span></h1>
+                    <p class="mb-4">{{data.about_desc1|safe}}
                     </p>
-                    <p>
-                        <b>At Sai Cab,</b> we understand the importance of affordability without compromising on
-                        quality.
-                        That's why we offer our
-                        services at inexpensive and reasonable rates, ensuring that you can enjoy a luxurious
-                        journey
-                        without breaking the bank.
-                    </p>
-
-
                 </div>
             </div>
             <p>
-                <b>So sit back, relax, and let our experienced </b>chauffeurs take care of your travel
-                needs.
-                Experience the ultimate in
-                comfort, convenience, and peace of mind with Sai Cab. Book your ride today and make way for
-                an
-                unforgettable travel
-                experience!
-
-            </p>
-            <p>ultimate travel experience with Sai Cab! Our team of highly trained and qualified chauffeurs is dedicated
-                to providing
-                you with the highest level of service, ensuring a smooth and enjoyable journey.</p>
-
-            <p>Each of our chauffeurs undergoes a thorough verification process to guarantee their reliability and
-                professionalism.
-                They are licensed and possess extensive experience in the industry, allowing them to handle various
-                travel situations
-                with expertise and care.</p>
-
-            <p>We prioritize your comfort and convenience, offering a range of luxurious vehicles to suit your needs
-                and preferences.
-                Whether you require a sedan for a business meeting, an SUV for a family outing, or a spacious van for
-                group travel, we
-                have got you covered.</p>
-
-            <p>Taxis are a form of public transportation that provides on-demand transportation services to passengers.
-                They are
-                typically cars, vans, or other vehicles that are available for hire by the general public. Taxis are
-                commonly found in
-                urban areas and are often distinguished by their distinctive color, markings, or signage.</p>
-
-            Here are some key points about taxis:
-
-            <p>Hiring a Taxi: Taxis can be hailed on the street or hired from designated taxi stands or taxi ranks. In
-                some cities,
-                taxi services can also be accessed through smartphone apps or by calling a taxi company.</p>
-
-            <p>Professional Drivers: Taxis are driven by professional drivers who are licensed to operate the vehicle.
-                These drivers
-                are knowledgeable about the local area and can navigate the city efficiently.</p>
-
-            <p>Fare Calculation: Taxis usually charge fares based on a combination of distance traveled and time spent
-                in the vehicle.
-                They may have meters installed that calculate the fare automatically, or the fare may be negotiated in
-                advance or based
-                on a predetermined rate.</p>
-
-            <p> Regulations: Taxis are subject to various regulations, which may vary by location. These regulations
-                often cover aspects
-                such as vehicle maintenance, driver background checks, fare structures, and licensing requirements.</p>
-
-            <p>Convenience and Flexibility: Taxis offer convenience and flexibility by allowing passengers to travel
-                directly from
-                their location to their desired destination without the need for transfers or adhering to fixed
-                schedules.</p>
-
-            <p>Availability: Taxis are typically available 24/7, making them a reliable transportation option for
-                people needing to
-                travel at any time of the day or night.</p>
-
-            <p>Ride-Sharing Services: In recent years, ride-sharing services such as Uber and Lyft have gained
-                popularity as
-                alternatives to traditional taxis. These services utilize smartphone apps to connect passengers with
-                drivers using their
-                own private vehicles.</p>
-
-            <p> It's important to note that specific taxi services and regulations may vary from one city or country to
-                another. It's
-                always a good idea to familiarize yourself with the local rules and customs regarding taxi usage when
-                traveling to a new
-                location.
+                {{data.about_desc2|safe}}
             </p>
         </div>
     <!-- About End -->
@@ -120,8 +32,7 @@
                 <div class="timeline-content">
                     <h2>Vision :</h2>
                     <p>
-                    "To be the leading and most preferred taxi company, providing exceptional transportation services that exceed customer
-                    expectations, revolutionizing the industry through innovation, and contributing to sustainable urban mobility".
+                    "{{data.vision|striptags|safe}}".
 
                     </p>
                     
@@ -135,12 +46,12 @@
                 <div class="timeline-content right">
                     <h2>Mission :</h2>
                     <p>
-                        "Our mission is to provide safe, reliable, and convenient transportation services to our customers while prioritizing
-                        their comfort and satisfaction. We strive to be the premier taxi company in our region, delivering exceptional service
-                        that exceeds customer expectations".
+                        "{{data.mission|striptags|safe}}".
+
 
                     </p>
                 </div>
             </div>
         </div>
     </div>
+{% endfor %}

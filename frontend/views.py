@@ -157,9 +157,9 @@ def form_localway(request):
 
 
 def about_front(request):
-
+    about_obj = about.objects.all()
     # return render(request, 'frontend/about.html')
-    return render(request, 'page/about_front.html')
+    return render(request, 'page/about_front.html', {'about_list': about_obj})
 
 
 def service_front(request):

@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout #For Authentication 
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
+import json
 
 # Email Imports
 from django.core.mail import send_mail, EmailMessage
@@ -36,7 +37,6 @@ def loginpage(request):
     return render(request, 'dashboard/login.html')
 
 def home(request):
-    print(request.FILES)
     if request.method == 'POST':
         heading_text1 = request.POST.get('headingname1')
         heading_text2 = request.POST.get('headingname2')
@@ -56,6 +56,32 @@ def home(request):
 
     return render(request, 'dashboard/home.html', {'heading_data': heading_content})
 
+# def aboutus(request):
+#     if request.method == 'POST':
+#         about_heading = request.POST.get('heading_name')
+#         about_desc1 = request.POST.get('description_name')
+#         about_desc2 = request.POST.get('description2_name')
+#         vision = request.POST.get('vision_name')
+#         mission = request.POST.get('mission_name')
+#         image_file = request.FILES.get('about_iamge')
+
+#         obj = about()
+#         obj.about_title = about_heading
+#         obj.about_desc1 = about_desc1
+#         obj.about_desc2 = about_desc2
+#         obj.vision = vision
+#         obj.mission = mission
+
+#         if image_file:
+#             obj.image = image_file
+#         obj.save()
+
+#         return redirect('add_aboutus')
+
+#     about_content = about.objects.all()
+
+#     return render(request, 'dashboard/about_admin.html', {'about_data': about_content})
+
 def aboutus(request):
     if request.method == 'POST':
         about_heading = request.POST.get('heading_name')
@@ -65,7 +91,9 @@ def aboutus(request):
         mission = request.POST.get('mission_name')
         image_file = request.FILES.get('about_iamge')
 
+
         obj = about()
+        # obj.about_title = json.dumps(full_heading)  # Convert to JSON string
         obj.about_title = about_heading
         obj.about_desc1 = about_desc1
         obj.about_desc2 = about_desc2
@@ -79,6 +107,7 @@ def aboutus(request):
         return redirect('add_aboutus')
 
     about_content = about.objects.all()
+
 
     return render(request, 'dashboard/about_admin.html', {'about_data': about_content})
 
@@ -133,7 +162,7 @@ def services(request):
     service_content = services_data.objects.all()
 
     # Number of items to show per page
-    items_per_page = 3
+    items_per_page = 4
 
     # Create a Paginator object
     paginator = Paginator(service_content, items_per_page)
@@ -256,21 +285,18 @@ def delete_Ride(request, id):
     car = rides.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     car.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('add_ride')
 
 def delete_car(request, id):
     car = cars.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     car.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('add_car')
 
 def delete_about(request, id):
     car = about.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     car.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('add_aboutus')
 
 
@@ -278,21 +304,18 @@ def delete_gallery(request, id):
     car = gallery_data.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     car.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('admin_gallery')
 
 def delete_service(request, id):
     car = services_data.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     car.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('admin_services')
 
 def delete_contact(request, id):
     car = contactus.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     car.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('admin_contact')
 
 
@@ -307,7 +330,6 @@ def deletehomedata(request, id):
     entry = sliderupdate.objects.get(id=id)
     # entry = sliderupdate.objects.all()
     entry.delete()
-    messages.success(request,'Data Deleted Successfully!')
     return redirect('home')
 
 def bookingentry(request):
@@ -320,19 +342,16 @@ def Delete_singleTrip_entry(request, id):
     singleTrip_entry = onewaybooking.objects.get(id=id)
     singleTrip_entry.delete()
 
-    messages.success(request, 'Data Deleted Successfully from Oneway Booking!')
     return redirect('bookingentry')
 
 def Delete_roundTrip_entry(request, id):
     roundTrip_entry = roundbooking.objects.get(id=id)
     roundTrip_entry.delete()
-    messages.success(request, 'Data Deleted Successfully from Roundway Booking!')
     return redirect('bookingentry')
 
 def Delete_localTrip_entry(request, id):
     localTrip_entry = localbooking.objects.get(id=id)
     localTrip_entry.delete()
-    messages.success(request, 'Data Deleted Successfully from Local Booking!')
     return redirect('bookingentry')
 
 

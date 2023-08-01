@@ -5,7 +5,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  {% comment %} <link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-argon"> {% endcomment %}
   
   <title>
     {% block title %} Open-Source Admin Panel {% endblock %}
@@ -24,20 +23,24 @@
   <link rel="stylesheet" href="/static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
 
-  <!-- CKEDITOR JS -->
-  <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-
     <!-- CKEDITOR JS -->
-    <script type="text/javascript">
-      {% comment %} CKEDITOR.replace('headingname1, headingname2'); {% endcomment %}
-      document.addEventListener('DOMContentLoaded', function () {
-        const textareas = document.querySelectorAll('.ckeditor-textarea');
+    <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
   
-        for (const textarea of textareas) {
-            CKEDITOR.replace(textarea);
-        }
-    });
-    </script> 
+    <!-- Include the CKEditor script -->
+    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+  
+    <!-- Load the config.js file after the CKEditor script -->
+    <script src="{% static 'ckeditor/config.js' %}"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const textareaElements = document.querySelectorAll('.ckeditor-textarea');
+      
+          for (const textareaElement of textareaElements) {
+              CKEDITOR.replace(textareaElement.id);
+          }
+      });
+      </script>
   
   <!-- Argon CSS -->
   <link rel="stylesheet" href="/static/assets/css/argon.css" type="text/css">

@@ -41,4 +41,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// Customize other CKEditor settings
     config.language = 'en';
     config.skin = 'moono';
+	config.autoQuote = false;
 };
