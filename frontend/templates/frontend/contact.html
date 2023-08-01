@@ -1,5 +1,6 @@
     <!-- Contact start -->
     <div class="contact-from-section">
+        {% for data in contact_data %}
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -28,22 +29,21 @@
                     <div class="contact-form-wrap">
                         <div class="contact-form-box">
                             <h4><i class="fa fa-map-pin"></i>Address</h4>
-                            <p>Shyamal Vertix, Near Punjab Bank, Sadhu Vasvani Road, Rajkot, Gujarat
-                                360005, India
-                            </p>
+                            <p>{{ data.contact_Address }}</p>
                         </div>
                         <div class="contact-form-box">
                             <h4><i class="fa fa-sharp fa-solid fa-envelope"></i>Email</h4>
-                            <p>saicab2017@gmail.com</p>
+                            <p>{{ data.contact_Email }}</p>
                         </div>
                         <div class="contact-form-box">
                             <h4><i class="fas fa-address-book"></i> Contact</h4>
-                            <p> +91 73594 01111 <br> +91 99247 99647</p>
+                            <p> +91 {{ data.contact_Mobile }} <br> +91 99247 99647</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
         <div class="col-md-12 wow fadeIn" data-wow-delay="0.1s">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.686441175898!2d70.7586276743946!3d22.289864579694036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959cbd4377055bf%3A0xb1553412aea72b2b!2sSadhu%20Vasvani%20Rd%2C%20Janak%20Puri%2C%20Yogi%20Nagar%2C%20Rajkot%2C%20Gujarat%20360005!5e0!3m2!1sen!2sin!4v1688647004208!5m2!1sen!2sin"

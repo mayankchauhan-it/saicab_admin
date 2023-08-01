@@ -26,6 +26,18 @@
 
   <!-- CKEDITOR JS -->
   <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+    <!-- CKEDITOR JS -->
+    <script type="text/javascript">
+      {% comment %} CKEDITOR.replace('headingname1, headingname2'); {% endcomment %}
+      document.addEventListener('DOMContentLoaded', function () {
+        const textareas = document.querySelectorAll('.ckeditor-textarea');
+  
+        for (const textarea of textareas) {
+            CKEDITOR.replace(textarea);
+        }
+    });
+    </script> 
   
   <!-- Argon CSS -->
   <link rel="stylesheet" href="/static/assets/css/argon.css" type="text/css">
@@ -54,17 +66,7 @@
 
   <script src="/static/assets/js/argon.js"></script>
 
-  <!-- CKEDITOR JS -->
-  <script type="text/javascript">
-    {% comment %} CKEDITOR.replace('headingname1, headingname2'); {% endcomment %}
-    document.addEventListener('DOMContentLoaded', function () {
-      const textareas = document.querySelectorAll('.ckeditor-textarea');
 
-      for (const textarea of textareas) {
-          CKEDITOR.replace(textarea);
-      }
-  });
-  </script> 
 
 </body>
 

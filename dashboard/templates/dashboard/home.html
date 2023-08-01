@@ -159,7 +159,7 @@
                             name="headingname1" /><br />
 
                             <label for="recipient-name" class="col-form-label">Slider Heading 2 Text</label>
-                            <input type="text" class="form-control" id="headingname21" required
+                            <input type="text" class="form-control ckeditor-textarea" id="headingname21" required
                             name="headingname2" /><br />
                             
                             <label for="image" class="col-form-label">Slider Image:</label>
@@ -184,7 +184,7 @@
       <!-- Specific JS goes HERE --> 
   {% block javascripts %}
 
-  {% comment %} <script>
+  <script>
     // Function to automatically dismiss messages after 2 seconds
     document.addEventListener(function () {
         const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
@@ -193,7 +193,7 @@
             CKEDITOR.replace(divId);
         }
     });
-  </script> {% endcomment %}
+  </script>
   
   
   {% endblock javascripts %}

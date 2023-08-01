@@ -165,16 +165,19 @@ def about_front(request):
 def service_front(request):
     service_obj = services_data.objects.all()
 
-
     # return render(request, 'frontend/service.html')
     return render(request, 'page/service_front.html', {'service_data': service_obj})
 
 def gallery_front(request):
 
+    gallery_obj = gallery_data.objects.all()
+
     # return render(request, 'frontend/gallery.html')
-    return render(request, 'page/gallery_front.html')
+    return render(request, 'page/gallery_front.html', {'gallery_data': gallery_obj})
 
 def contact_front(request):
 
+    contact_obj = contactus.objects.all()
+
     # return render(request, 'frontend/contact.html')
-    return render(request, 'page/contact_front.html')
+    return render(request, 'page/contact_front.html', {'contact_data': contact_obj})

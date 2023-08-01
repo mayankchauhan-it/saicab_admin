@@ -109,7 +109,7 @@
                                     {{data.about_desc2}}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.vision}}
+                                    {{data.vision|safe }}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
                                     {{data.mission}}
@@ -209,19 +209,19 @@
                             name="heading_name" /><br />
 
                             <label for="headingname21" class="col-form-label">Description</label>
-                            <input type="text" class="form-control" id="description_ID" required
+                            <input type="text" class="form-control ckeditor-textarea" id="description_ID" required
                             name="description_name" /><br />
 
                             <label for="headingname21" class="col-form-label">Description 2</label>
-                            <input type="text" class="form-control" id="description2_ID" 
+                            <input type="text" class="form-control ckeditor-textarea" id="description2_ID" 
                             name="description2_name" /><br />
 
                             <label for="headingname21" class="col-form-label">Vision</label>
-                            <input type="text" class="form-control" id="vision_ID" required
+                            <input type="text" class="form-control ckeditor-textarea text-limit" id="vision_ID" required
                             name="vision_name" /><br />
 
                             <label for="headingname21" class="col-form-label">Mission</label>
-                            <input type="text" class="form-control" id="mission_ID" required
+                            <input type="text" class="form-control ckeditor-textarea text-limit" id="mission_ID" required
                             name="mission_name" /><br />
 
                             <label for="image" class="col-form-label">Image</label>
@@ -257,7 +257,7 @@
 {% comment %} <script>
 // Function to automatically dismiss messages after 2 seconds
 document.addEventListener(function () {
-    const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
+    const divIds = ['description_ID', 'description2_ID']; // Add more IDs as needed
 
     for (const divId of divIds) {
         CKEDITOR.replace(divId);
