@@ -156,7 +156,23 @@ def form_localway(request):
     return render (request, 'page/home_front.html')
 
 
-def about(request):
+def about_front(request):
 
     # return render(request, 'frontend/about.html')
     return render(request, 'page/about_front.html')
+
+
+def service_front(request):
+
+    # return render(request, 'frontend/service.html')
+    return render(request, 'page/service_front.html')
+
+def gallery_front(request):
+
+    # return render(request, 'frontend/gallery.html')
+    return render(request, 'page/gallery_front.html')
+
+def contact_front(request):
+
+    # return render(request, 'frontend/contact.html')
+    return render(request, 'page/contact_front.html')

@@ -2,12 +2,10 @@
 
 {% include 'include/head.html' %}
 
-{% block custom_title %} <title> Sai Cab - About Us </title> {% endblock %} 
+{% block custom_title %} <title> Sai Cab - Gallery </title> {% endblock %} 
 
 
 {% block stylesheets %}{% endblock stylesheets %}
-
-
 
 {% block content %}
 
@@ -27,11 +25,11 @@
     <div class="container-fluid page-header mb-5 p-0" style="background-image: url(https://media.istockphoto.com/id/519870714/photo/taxi.jpg?s=612x612&w=0&k=20&c=mzlqm5eisvu-B7hCyOK3LAsR4ugFTsHtC2kMWUmbA0Y=);">
         <div class="container-fluid page-header-inner py-5">
             <div class="container text-center">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">Gallery</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Gallery</li>
                     </ol>
                 </nav>
             </div>
@@ -39,7 +37,7 @@
     </div>
     <!-- Page Header End -->
     
-    {% include 'frontend/about.html' %}
+    {% include 'frontend/gallery.html' %}
 
 
 
@@ -50,11 +48,8 @@
 
 {% endblock content %}
 
-
-
+<!-- Specific JS goes HERE -->
 {% block javascripts %}
-
-
 <script>
     // Spinner
     var spinner = function () {
@@ -67,5 +62,6 @@
     spinner();
 </script>
 
-
 {% endblock javascripts %}
+
+
