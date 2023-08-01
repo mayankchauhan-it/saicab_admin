@@ -163,9 +163,11 @@ def about_front(request):
 
 
 def service_front(request):
+    service_obj = services_data.objects.all()
+
 
     # return render(request, 'frontend/service.html')
-    return render(request, 'page/service_front.html')
+    return render(request, 'page/service_front.html', {'service_data': service_obj})
 
 def gallery_front(request):
 

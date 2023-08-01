@@ -1,102 +1,51 @@
 
 {% load static %}
 
+{% for data in service_data%}
+
+{% if forloop.counter|divisibleby:2 %}
 <div id="intro" class="basic-1">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6" data-aos="fade-down"
      data-aos-duration="1000">
                 <div class="image-frame">
-                    <img src={% static 'img/weddingcar.png' %}>
+                    <img src={{ data.service_image.url }}>
                 </div>
                 </div>
                 <div class="col-lg-6 col-md-6" data-aos="fade-up"
      data-aos-duration="1000">
                     <div class="image-text">
-                    <h2>WEDDING</h2>
-                    <p>Saicab offers an incredible service for weddings by providing beautifully decorated cars for the groom. Our attention to
-                    detail and exquisite decorations add a touch of elegance and style to the special occasion. With its fleet of luxurious
-                    vehicles and professional drivers, Saicab ensures the best service and satisfaction for clients. Our commitment to
-                    exceptional service and impeccable presentation makes us the perfect choice for couples seeking a truly extraordinary
-                    wedding experience.</p>
+                    <h2>{{ data.service_Name }}</h2>
+                    <p>{{ data.service_Description}}</p>
                     </div>
                 </div>
         </div>
     </div>
 </div>
-
-
+{% else %}
 <div id="intro2" class="basic-1">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6" data-aos="fade-up"
      data-aos-duration="1000">
                 <div class="image-text2" >
-                <h2>PRIORITIZE YOUR MEETING</h2>
-                <p>Saicab offers cab services tailored to corporate needs. With a strong focus on efficiency and reliability, we provide
-                prompt transportation solutions for urgent meetings, ensuring executives reach their destinations on time. Moreover,
-                Saicab extends premium services to corporate clients, offering convenient airport and hotel pickups and drop-offs. Our
-                dedicated professional drivers guarantee a comfortable and secure journey, fostering a seamless experience from arrival
-                to the company premises. Choose Saicab for all your corporate transportation requirements and experience our amazing
-                service firsthand.</p>
+                <h2>{{ data.service_Name }}</h2>
+                <p>{{ data.service_Description}}</p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6" data-aos="fade-down"
      data-aos-duration="1000">
                 <div class="image-frame">
-                    <img src="https://www.dreamsbanquethall.co.in/images/services/corporate-meeting.jpg">
+                    <img src={{ data.service_image.url }}>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
-    
-<div id="intro3" class="basic-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6" data-aos="fade-down"
-     data-aos-duration="1000">
-                <div class="image-frame">
-                    <img src={% static 'img/premiumcasr.png' %}>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6" data-aos="fade-up"
-     data-aos-duration="1000">
-                <div class="image-text">
-                <h2>PREMIUM CARS</h2>
-                <p>Saicab is your reliable partner for cab services, offering premium cars. Whether it's for business meetings or any other
-                purpose, you can trust Saicab to provide a hassle-free journey. With our wide range of premium cars, you can book a ride
-                and enjoy the journey without any worries. Sit back, relax, and let Saicab take care of your transportation needs.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="intro4" class="basic-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6"  data-aos="fade-up"
-     data-aos-duration="1000">
-                <div class="image-text2">
-                <h2>EVENT TRANSPORTATION EXCELLENCE</h2>
-                <p>Saicab is your go-to destination for reliable cab services and event transportation solutions. Whether you need a ride
-                to your destination or want to ensure seamless transportation for your special event or wedding, we've got you covered.
-                With our fleet of cars and dedicated team, we take the stress out of managing transportation, allowing you to focus on
-                enjoying your event. Trust Saicab for a hassle-free experience that will ease your transportation process</p>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6" data-aos="fade-down"
-     data-aos-duration="1000">
-                <div class="image-frame">
-                    <img src={% static 'img/event.jpg' %}>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+{% endif %}
+{% endfor %}
     
     
     <!-- Back to Top -->
