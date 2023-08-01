@@ -82,7 +82,100 @@ def aboutus(request):
 
     return render(request, 'dashboard/about_admin.html', {'about_data': about_content})
 
+def gallery(request):
+    if request.method == 'POST':
+        gallery_city = request.POST.get('city_name')
+        gellery_description = request.POST.get('description_name')
+        gallery_image_file = request.FILES.get('gallery_iamge_name')
 
+        obj = gallery_data()
+        obj.city = gallery_city
+        obj.description = gellery_description
+
+        if gallery_image_file:
+            obj.gallery_image = gallery_image_file
+        obj.save()
+
+        return redirect('admin_gallery')
+
+    gallery_content = gallery_data.objects.all()
+
+    # Number of items to show per page
+    items_per_page = 3
+
+    # Create a Paginator object
+    paginator = Paginator(gallery_content, items_per_page)
+
+    # Get the current page number from the request
+    page_number = request.GET.get('page')
+
+    # Get the Page object for the requested page number
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'dashboard/gallery_admin.html', {'gallery_data': gallery_content, 'page_obj': page_obj})
+
+def services(request):
+    if request.method == 'POST':
+        service_heading = request.POST.get('service_name')
+        service_desc1 = request.POST.get('description_name')
+        service_image_file = request.FILES.get('service_image_name')
+
+        obj = services_data()
+        obj.service_Name = service_heading
+        obj.service_Description = service_desc1
+
+        if service_image_file:
+            obj.service_image = service_image_file
+        obj.save()
+
+        return redirect('admin_services')
+
+    service_content = services_data.objects.all()
+
+    # Number of items to show per page
+    items_per_page = 3
+
+    # Create a Paginator object
+    paginator = Paginator(service_content, items_per_page)
+
+    # Get the current page number from the request
+    page_number = request.GET.get('page')
+
+    # Get the Page object for the requested page number
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'dashboard/service_admin.html', {'service_data': service_content, 'page_obj': page_obj})
+
+def contact(request):
+    if request.method == 'POST':
+        contact_address = request.POST.get('address_name')
+        contact_email = request.POST.get('email_name')
+        contact_mobile = request.POST.get('mobile_name')
+
+        obj = contactus()
+        obj.contact_Address = contact_address
+        obj.contact_Email = contact_email
+        obj.contact_Mobile = contact_mobile
+
+        obj.save()
+
+        return redirect('admin_contact')
+
+    contact_content = contactus.objects.all()
+
+    # Number of items to show per page
+    items_per_page = 3
+
+    # Create a Paginator object
+    paginator = Paginator(contact_content, items_per_page)
+
+    # Get the current page number from the request
+    page_number = request.GET.get('page')
+
+    # Get the Page object for the requested page number
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'dashboard/contact_admin.html', {'contact_data': contact_content, 'page_obj': page_obj})
 
 
 def add_car(request):
@@ -179,6 +272,36 @@ def delete_about(request, id):
     car.delete()
     messages.success(request,'Data Deleted Successfully!')
     return redirect('add_aboutus')
+
+
+def delete_gallery(request, id):
+    car = gallery_data.objects.get(id=id)
+    # entry = sliderupdate.objects.all()
+    car.delete()
+    messages.success(request,'Data Deleted Successfully!')
+    return redirect('admin_gallery')
+
+def delete_service(request, id):
+    car = services_data.objects.get(id=id)
+    # entry = sliderupdate.objects.all()
+    car.delete()
+    messages.success(request,'Data Deleted Successfully!')
+    return redirect('admin_services')
+
+def delete_contact(request, id):
+    car = contactus.objects.get(id=id)
+    # entry = sliderupdate.objects.all()
+    car.delete()
+    messages.success(request,'Data Deleted Successfully!')
+    return redirect('admin_contact')
+
+
+
+
+
+
+
+
 
 def deletehomedata(request, id):
     entry = sliderupdate.objects.get(id=id)

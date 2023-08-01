@@ -69,3 +69,19 @@ class about(models.Model):
     mission = models.CharField(max_length=500, null=True)
 
     image = models.ImageField(upload_to='about/', null=True, blank=True)
+
+
+class gallery_data(models.Model):
+    city = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=1000, null=True)
+    gallery_image = models.ImageField(upload_to='gallery/', null=True, blank=True)
+
+class services_data(models.Model):
+    service_Name = models.CharField(max_length=255, null=True)
+    service_Description = models.CharField(max_length=1000, null=True)
+    service_image = models.ImageField(upload_to='service/', null=True, blank=True)
+
+class contactus(models.Model):
+    contact_Address = models.CharField(max_length=255, null=True)
+    contact_Email = models.EmailField(max_length=255, null=True)
+    contact_Mobile = models.IntegerField(null=True)

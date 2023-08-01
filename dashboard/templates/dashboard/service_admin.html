@@ -1,6 +1,6 @@
 {% extends 'dash/templates/layouts/base.html' %}
 
-{% block title %} About Us {% endblock title %}
+{% block title %} Services {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
@@ -36,6 +36,7 @@
   
 {% endblock stylesheets %}
 
+
 {% block content %}
 
 <!-- Header -->
@@ -49,9 +50,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 d-flex align-items-center justify-content-between">
-                                    <h3 class="h2 text-warning"> About Us </h3>
+                                    <h3 class="h2 text-warning"> Services </h3>
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#exampleModalLong">Add About Us</button>
+                                        data-target="#exampleModalLong">Add Services</button>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0">About Us</h3>
+                            <h3 class="mb-0">Services</h3>
                         </div>
                         <div class="col text-right">
                             <a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -79,44 +80,32 @@
                 </div>
                 <div class="table-responsive">
                     <!-- Projects table -->
-                    <table class="table align-items-center table-flush ">
+                    <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
                                 <th style="text-align: center;" scope="col">Sr.No</th>
-                                <th style="text-align: center;" scope="col">Heading</th>
-                                <th style="text-align: center;" scope="col">About Description</th>
-                                <th style="text-align: center;" scope="col">About Description 2</th>
-                                <th style="text-align: center;" scope="col">Vision</th>
-                                <th style="text-align: center;" scope="col">Mission</th>
+                                <th style="text-align: center;" scope="col">Service</th>
+                                <th style="text-align: center;" scope="col">Description</th>
                                 <th style="text-align: center;" scope="col">Image</th>
                                 <th style="text-align: center;" scope="col">Update</th>
                                 <th style="text-align: center;" scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class=''> 
-                                {% for data in about_data%}
+                            <tr>
+                                {% for data in page_obj%}
                                 <td style="text-align: center;"  scope="row">
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.about_title}}
+                                    {{data.service_Name}}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.about_desc1}}
+                                    {{data.service_Description}}
                                 </td>
-                                <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.about_desc2}}
-                                </td>
-                                <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.vision}}
-                                </td>
-                                <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.mission}}
-                                </td>
-                                {% if data.image %}
+                                {% if data.service_image %}
                                     <td scope="row" style="text-align: center;">
-                                        <img src="{{ data.image.url }}" alt="Image" style="width: 150px; height: 100px; border: 1px solid black;">
+                                        <img src="{{ data.service_image.url }}" alt="Image" style="width: 150px; height: 100px; border: 1px solid black;">
                                     </td>
                                 {% else %}
                                     <td scope="row" style="text-align: center;">
@@ -133,7 +122,7 @@
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
-                                    <a href="DeleteAbout/{{ data.id }}"
+                                    <a href="DeleteService/{{ data.id }}"
                                         onclick="return confirm('Are You Sure,You want to delete this data?');"
                                         class="btn w-md btn-warning"><i class="fa-solid fa-trash"></i>
                                     </a>
@@ -190,12 +179,13 @@
     </div>
 
 
+    <!-- Modal Start -->
     <!-- Add Model Start -->
     <div class="modal fade" id="exampleModalLong">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change About US</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Services</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -204,28 +194,18 @@
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token%}
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Heading</label>
-                            <input type="text" class="form-control" id="heading_ID" required
-                            name="heading_name" /><br />
+
+
+                            <label for="recipient-name" class="col-form-label">Service Name</label>
+                            <input type="text" class="form-control" id="service_ID" required
+                            name="service_name" /><br />
 
                             <label for="headingname21" class="col-form-label">Description</label>
                             <input type="text" class="form-control" id="description_ID" required
                             name="description_name" /><br />
 
-                            <label for="headingname21" class="col-form-label">Description 2</label>
-                            <input type="text" class="form-control" id="description2_ID" 
-                            name="description2_name" /><br />
-
-                            <label for="headingname21" class="col-form-label">Vision</label>
-                            <input type="text" class="form-control" id="vision_ID" required
-                            name="vision_name" /><br />
-
-                            <label for="headingname21" class="col-form-label">Mission</label>
-                            <input type="text" class="form-control" id="mission_ID" required
-                            name="mission_name" /><br />
-
                             <label for="image" class="col-form-label">Image</label>
-                            <input type="file" class="form-control" id="about_iamge11" name="about_iamge" /><br />
+                            <input type="file" class="form-control" id="service_image_ID" name="service_image_name" /><br />
 
                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -240,29 +220,27 @@
         </div>
     </div>
 
-{% include "dash/templates/includes/footer.html" %}
+    {% include "dash/templates/includes/footer.html" %}
 
 
+      <!-- Specific JS goes HERE --> 
+    {% block javascripts %}
 
+    {% comment %} <script>
+        // Function to automatically dismiss messages after 2 seconds
+        document.addEventListener(function () {
+            const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
+
+            for (const divId of divIds) {
+                CKEDITOR.replace(divId);
+            }
+        });
+    </script> {% endcomment %}
+    
+    
+    {% endblock javascripts %}
 
 
 </div>
 
 {% endblock content %}
-
-
-<!-- Specific JS goes HERE --> 
-{% block javascripts %}
-
-{% comment %} <script>
-// Function to automatically dismiss messages after 2 seconds
-document.addEventListener(function () {
-    const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
-
-    for (const divId of divIds) {
-        CKEDITOR.replace(divId);
-    }
-});
-</script> {% endcomment %}
-
-{% endblock javascripts %}
