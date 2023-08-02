@@ -98,13 +98,13 @@
                                     {{forloop.counter}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
-                                    {{data.contact_Address|striptags}}
-                                </td>
-                                <td scope="row" style="text-align: center;">
-                                    {{data.contact_Email}}
+                                    {{data.contact_Address|safe|striptags}}
                                 </td>
                                 <td scope="row" style="text-align: center;">
                                     {{data.contact_Mobile}}
+                                </td>
+                                <td scope="row" style="text-align: center;">
+                                    {{data.contact_Email}}
                                 </td>
 
                                 <td scope="row" style="text-align: center;">
@@ -213,6 +213,49 @@
             </div>
         </div>
     </div>
+
+    <!-- Update Model Start -->
+    {% for data in contact_data %}
+    <div class="modal fade bd-example-modal-lg" id="Update{{ data.id }}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Contact Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="contactupdate/{{ data.id }}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="Addressupdate" class="col-form-label">Update Address</label>
+                            <textarea class="form-control ckeditor-textarea" id="descupdate{{ data.id }}" required
+                                name="addressupdate">{{ data.contact_Address }}</textarea><br />
+
+                            <label for="Emailupdate" class="col-form-label">Update Email ID</label>
+                            <input type='email' class="form-control ckeditor-field" id="emailupdate{{ data.id }}" required
+                                name="emailupdate" value="{{ data.contact_Email }}"></input><br />
+
+                            <label for="Mobileupdate" class="col-form-label">Update Mobile No.</label>
+                            <input type='number' class="form-control ckeditor-field" id="mobileupdate{{ data.id }}" required
+                                name="mobileupdate" value="{{ data.contact_Mobile }}"></input><br />
+
+
+                            <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary"><i
+                                        class="fa-regular fa-pen-to-square" name="submit_button"></i>Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+    <!-- Update Model End -->
 
     {% include "dash/templates/includes/footer.html" %}
 

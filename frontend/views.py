@@ -86,6 +86,35 @@ def form_oneway(request):
 
     return render (request, 'page/home_front.html')
 
+def contactus_form(request):
+    if request.method=="POST":
+        contact_name = request.POST.get('name')
+        contact_email = request.POST.get('email')
+        contact_phone = request.POST.get('phone')
+        contact_subject = request.POST.get('subject')
+        contact_message = request.POST.get('message')
+
+        contactForm_obj = contact_Form()
+        contactForm_obj.contactName = contact_name
+        contactForm_obj.contactEmail = contact_email
+        contactForm_obj.contactPhone = contact_phone
+        contactForm_obj.contactSubject = contact_subject
+        contactForm_obj.contactMessage = contact_message
+        contactForm_obj.save()
+
+        subject = f"New Contact Inquiry From {contact_name}"
+        email_message = f"""Name: <strong>{contact_name}</strong> <br>Email: <strong>{contact_email}</strong> <br>Mobile No: <strong>{contact_phone}</strong><br>Subject: <strong>{contact_subject}</strong><br>Message: <strong>{contact_message}</strong><br>"""
+
+        email = EmailMessage(subject, email_message, to=[EMAIL_HOST_USER])
+        email.content_subtype = "html"
+        email.send()
+
+        print(email)
+
+        return redirect('contact_us')
+    
+    return render (request, 'page/contact_front.html')
+
 
 def form_roundway(request):
     if request.method == "POST":

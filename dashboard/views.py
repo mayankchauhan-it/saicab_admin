@@ -56,31 +56,6 @@ def home(request):
 
     return render(request, 'dashboard/home.html', {'heading_data': heading_content})
 
-# def aboutus(request):
-#     if request.method == 'POST':
-#         about_heading = request.POST.get('heading_name')
-#         about_desc1 = request.POST.get('description_name')
-#         about_desc2 = request.POST.get('description2_name')
-#         vision = request.POST.get('vision_name')
-#         mission = request.POST.get('mission_name')
-#         image_file = request.FILES.get('about_iamge')
-
-#         obj = about()
-#         obj.about_title = about_heading
-#         obj.about_desc1 = about_desc1
-#         obj.about_desc2 = about_desc2
-#         obj.vision = vision
-#         obj.mission = mission
-
-#         if image_file:
-#             obj.image = image_file
-#         obj.save()
-
-#         return redirect('add_aboutus')
-
-#     about_content = about.objects.all()
-
-#     return render(request, 'dashboard/about_admin.html', {'about_data': about_content})
 
 def aboutus(request):
     if request.method == 'POST':
@@ -357,3 +332,32 @@ def Delete_localTrip_entry(request, id):
 
 
 
+def update_about(request, id):
+    entry = get_object_or_404(about, id = id)
+
+    if request.method == 'POST':
+        entry.about_title = request.POST.get('heading_name')
+        entry.about_desc1 = request.POST.get('description_name')
+        entry.about_desc2 = request.POST.get('description2_name')
+        entry.vision = request.POST.get('vision_name')
+        entry.mission = request.POST.get('mission_name')
+
+
+        image_entry = request.FILE.get('about_image')
+        if image_entry:
+            entry.image.save(image_entry.name, image_entry, save=True)
+        entry.save()
+    
+    return redirect('add_aboutus')
+
+
+def update_contact(request, id):
+    entry = get_object_or_404(contactus, id=id)
+
+    if request.method == 'POST':
+        entry.contact_Address = request.POST.get('addressupdate')
+        entry.contact_Email = request.POST.get('emailupdate')
+        entry.contact_Mobile = request.POST.get('mobileupdate')
+        entry.save()
+    
+    return redirect('admin_contact')

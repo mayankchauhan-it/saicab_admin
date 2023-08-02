@@ -14,5 +14,6 @@ urlpatterns = [
     path('services', views.service_front, name='services'),
     path('gallery', views.gallery_front, name='gallery'),
     path('contactus', views.contact_front, name='contact_us'),
+    path('contact_form', views.contactus_form, name="contact_form_details")
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

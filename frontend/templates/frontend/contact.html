@@ -6,7 +6,8 @@
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div id="form_status"></div>
                     <div class="contact-form">
-                        <form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                        <form method="POST" id="fruitkha-contact" action="{% url 'contact_form_details'%}">
+                            {% csrf_token %}
                             <p>
                                 <input type="text" placeholder="Name" name="name" id="name">
                                 <input type="email" placeholder="Email" name="email" id="email">
@@ -29,7 +30,7 @@
                     <div class="contact-form-wrap">
                         <div class="contact-form-box">
                             <h4><i class="fa fa-map-pin"></i>Address</h4>
-                            <p>{{ data.contact_Address }}</p>
+                            <p>{{ data.contact_Address|safe }}</p>
                         </div>
                         <div class="contact-form-box">
                             <h4><i class="fa fa-sharp fa-solid fa-envelope"></i>Email</h4>

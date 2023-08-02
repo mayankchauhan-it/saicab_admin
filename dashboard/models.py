@@ -57,13 +57,22 @@ class rides(models.Model):
     suv_price = models.IntegerField(null=True)
 
 class about(models.Model):
-    about_title = models.JSONField()
+    about_title = models.CharField(max_length=255, null=True)
     about_desc1 = RichTextField(max_length=1000, null=True)
     about_desc2 = models.TextField(null=True)
     vision = models.CharField(max_length=500, null=True)
     mission = models.CharField(max_length=500, null=True)
-
     image = models.ImageField(upload_to='about/', null=True, blank=True)
+
+    def update(self, title, Description, description2, vission, mission, image):
+        self.id = id
+        self.about_title = title
+        self.about_desc1 = Description
+        self.about_desc2 = description2
+        self.vision = vission
+        self.mission = mission
+        self.image = image
+        self.save()
 
 class gallery_data(models.Model):
     city = models.CharField(max_length=255, null=True)
@@ -79,3 +88,19 @@ class contactus(models.Model):
     contact_Address = models.CharField(max_length=255, null=True)
     contact_Email = models.EmailField(max_length=255, null=True)
     contact_Mobile = models.IntegerField(null=True)
+
+
+    def update(self, address, email, mobile):
+        self.id = id
+        self.about_title = address
+        self.about_desc1 = email
+        self.about_desc2 = mobile
+        self.save()
+
+
+class contact_Form(models.Model):
+    contactName = models.CharField(max_length=255, null=True)
+    contactEmail = models.EmailField(null=True)
+    contactPhone = models.IntegerField(null=True)
+    contactSubject = models.CharField(max_length=500, null=True)
+    contactMessage = models.CharField(max_length=500, null=True)
