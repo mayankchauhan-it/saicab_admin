@@ -116,7 +116,7 @@ def gallery(request):
     # Get the Page object for the requested page number
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'dashboard/gallery_admin.html', {'gallery_data': gallery_content, 'page_obj': page_obj})
+    return render(request, 'dashboard/gallery_admin.html', {'gallery_data_list': gallery_content, 'page_obj': page_obj})
 
 def services(request):
     if request.method == 'POST':
@@ -361,3 +361,15 @@ def update_contact(request, id):
         entry.save()
     
     return redirect('admin_contact')
+
+
+def update_gallery(request, id):
+    entry = get_object_or_404(gallery_data, id=id)
+
+    if request.method == 'POST':
+        entry.city = request.POST.get('cityupdate')
+        entry.description = request.POST.get('descupdate')
+        entry.gallery_image = request.POST.get('gallery_image')
+        entry.save()
+    
+    return redirect('admin_gallery')

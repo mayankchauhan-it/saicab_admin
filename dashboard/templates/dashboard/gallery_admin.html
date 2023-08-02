@@ -93,7 +93,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                {% for data in gallery_data%}
+                                {% for data in gallery_data_list%}
                                 <td style="text-align: center;"  scope="row">
                                     {{forloop.counter}}
                                 </td>
@@ -101,7 +101,7 @@
                                     {{data.city}}
                                 </td>
                                 <td class='limit-text' scope="row" style="text-align: center;">
-                                    {{data.description}}
+                                    {{data.description|safe}}
                                 </td>
                                 {% if data.gallery_image %}
                                     <td scope="row" style="text-align: center;">
@@ -205,7 +205,7 @@
                             name="description_name" /><br />
 
                             <label for="image" class="col-form-label">Image</label>
-                            <input type="file" class="form-control" id="gallery_iamge_ID" name="gallery_iamge_name" /><br />
+                            <input type="file" class="form-control" id="gallery_image_ID" name="gallery_iamge_name" /><br />
 
                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -220,24 +220,60 @@
         </div>
     </div>
 
+
+        <!-- Update Model Start -->
+        {% for data in gallery_data_list %}
+        <div class="modal fade bd-example-modal-lg" id="Update{{ data.id }}">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Contact Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="galleryupdate/{{ data.id }}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Addressupdate" class="col-form-label">Update City Name</label>
+                                <input type='text' class="form-control ckeditor-field" id="cityupdate{{ data.id }}" required
+                                    name="cityupdate" value="{{ data.city }}"></input><br />
+
+    
+                                <label for="descupdate" class="col-form-label">Update Description</label>
+                                <textarea class="form-control ckeditor-textarea" id="descupdate{{ data.id }}" required
+                                    name="descupdate">{{ data.description }}</textarea><br />
+    
+                                <label for="gallery_image" class="col-form-label">Update Image</label>
+                                <input type="file" class="form-control" id="gallery_image{{ data.id }}" name="gallery_image" multiple /><br />
+
+                                {% if data.gallery_image %}
+                                <div class="text-center">
+                                    <img src="{{ data.gallery_image.url }}" alt="Current Image"
+                                        style="width: 200px; height: 100px; border: 1px solid black;"><br />
+                                </div>
+                                {% endif %}
+    
+                                <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary"><i
+                                            class="fa-regular fa-pen-to-square" name="submit_button"></i>Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Update Model End -->
+
     {% include "dash/templates/includes/footer.html" %}
 
 
       <!-- Specific JS goes HERE --> 
     {% block javascripts %}
-
-    {% comment %} <script>
-        // Function to automatically dismiss messages after 2 seconds
-        document.addEventListener(function () {
-            const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
-
-            for (const divId of divIds) {
-                CKEDITOR.replace(divId);
-            }
-        });
-    </script> {% endcomment %}
-    
-    
     {% endblock javascripts %}
 
 

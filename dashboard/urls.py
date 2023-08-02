@@ -32,6 +32,7 @@ urlpatterns = [
     path('delete_localTrip_entry/<int:id>/', views.Delete_localTrip_entry, name='Delete_localTrip_entry'),
 
     path('contactupdate/<int:id>', views.update_contact, name='update_contactus'),
+    path('galleryupdate/<int:id>', views.update_gallery, name='update_gallery'),
 
 
 

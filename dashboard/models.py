@@ -79,6 +79,17 @@ class gallery_data(models.Model):
     description = models.CharField(max_length=1000, null=True)
     gallery_image = models.ImageField(upload_to='gallery/', null=True, blank=True)
 
+
+    def update(self, new_city, new_description, new_gallery_image=None):
+        self.city = new_city
+        self.description = new_description
+
+        if new_gallery_image:
+            self.gallery_image = new_gallery_image
+
+        self.save()
+
+
 class services_data(models.Model):
     service_Name = models.CharField(max_length=255, null=True)
     service_Description = models.CharField(max_length=1000, null=True)
