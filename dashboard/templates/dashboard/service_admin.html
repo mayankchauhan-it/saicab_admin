@@ -220,6 +220,55 @@
         </div>
     </div>
 
+
+     <!-- Update Model Start -->
+     {% for data in service_data %}
+     <div class="modal fade bd-example-modal-lg" id="Update{{ data.id }}">
+         <div class="modal-dialog modal-lg" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Update Services Details</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <form method="post" action="servicesupdate/{{ data.id }}" enctype="multipart/form-data">
+                         {% csrf_token %}
+                         <div class="form-group">
+                             <label for="Addressupdate" class="col-form-label">Update Service Name</label>
+                             <input type='text' class="form-control ckeditor-field" id="serviceNameupdate{{ data.id }}" required
+                                 name="serviceNameUpdate" value="{{ data.service_Name }}"></input><br />
+
+ 
+                            <label for="Servicedescupdate" class="col-form-label">Update Service Description</label>
+                            <input type="text" class="form-control ckeditor-field" id="Servicedescupdate{{ data.id }}" required
+                                 name="Servicedescupdate" value="{{ data.service_Description }}" /><br />
+ 
+                             <label for="service_image" class="col-form-label">Update Service Image</label>
+                             <input type="file" class="form-control" id="service_image{{ data.id }}" name="service_image" multiple /><br />
+
+                             {% if data.service_image %}
+                             <div class="text-center">
+                                 <img src="{{ data.service_image.url }}" alt="Current Image"
+                                     style="width: 200px; height: 100px; border: 1px solid black;"><br />
+                             </div>
+                             {% endif %}
+ 
+                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="submit" class="btn btn-primary"><i
+                                         class="fa-regular fa-pen-to-square" name="submit_button"></i>Submit</button>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+     {% endfor %}
+     <!-- Update Model End -->
+
     {% include "dash/templates/includes/footer.html" %}
 
 

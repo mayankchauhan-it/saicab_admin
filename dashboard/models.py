@@ -95,6 +95,18 @@ class services_data(models.Model):
     service_Description = models.CharField(max_length=1000, null=True)
     service_image = models.ImageField(upload_to='service/', null=True, blank=True)
 
+    def update(self, new_service, new_description, new_gallery_image=None):
+        self.service_Name = new_service
+        self.service_Description = new_description
+
+        if new_gallery_image:
+            self.gallery_image = new_gallery_image
+
+        self.save()
+
+
+
+
 class contactus(models.Model):
     contact_Address = models.CharField(max_length=255, null=True)
     contact_Email = models.EmailField(max_length=255, null=True)

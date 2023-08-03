@@ -4,26 +4,39 @@
     <div class="wrapper1">
         {% for data in gallery_data %}
             <div class="cards wow fadeInUp" data-wow-delay="0.1s">
-                <input type="checkbox" id="card10" class="more">
+                <input type="checkbox" id="card{{ data.id }}" class="more">
                 <div class="content">
+                    {% if data.gallery_image %}
                     <div class="front" style="background-image: url('{{ data.gallery_image.url }}')">
                         <div class="inner">
                             <h2>{{ data.city }}</h2>
                             <div class="rating">
                             </div>
-                            <label for="card10" class="button" aria-hidden="true">
+                            <label for="card{{ data.id }}" class="button" aria-hidden="true">
                                 Details
                             </label>
                         </div>
                     </div>
+                    {% else %}
+                    <div class="front">
+                        <div class="inner">
+                            <h2>{{ data.city }}</h2>
+                            <div class="rating">
+                            </div>
+                            <label for="card{{ data.id }}" class="button" aria-hidden="true">
+                                Details
+                            </label>
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="back">
                         <div class="inner">
 
                             <div class="description">
                                 <h4>DESTINATION COVERED BY SAI CAB</h4>
-                                <p> {{ data.description }}</p>
+                                <p> {{ data.description|safe }}</p>
                             </div>
-                            <label for="card10" class="button return" aria-hidden="true">
+                            <label for="card{{ data.id }}" class="button return" aria-hidden="true">
                                 <i class="fas fa-arrow-left"></i>
                             </label>
                         </div>

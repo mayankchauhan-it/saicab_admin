@@ -33,6 +33,8 @@ urlpatterns = [
 
     path('contactupdate/<int:id>', views.update_contact, name='update_contactus'),
     path('galleryupdate/<int:id>', views.update_gallery, name='update_gallery'),
+    path('servicesupdate/<int:id>', views.update_services, name='update_services'),
+    path('aboutupdate/<int:id>', views.update_about, name='update_about'),
 
 
 

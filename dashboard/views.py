@@ -105,7 +105,7 @@ def gallery(request):
     gallery_content = gallery_data.objects.all()
 
     # Number of items to show per page
-    items_per_page = 3
+    items_per_page = 5
 
     # Create a Paginator object
     paginator = Paginator(gallery_content, items_per_page)
@@ -137,7 +137,7 @@ def services(request):
     service_content = services_data.objects.all()
 
     # Number of items to show per page
-    items_per_page = 4
+    items_per_page = 5
 
     # Create a Paginator object
     paginator = Paginator(service_content, items_per_page)
@@ -336,14 +336,14 @@ def update_about(request, id):
     entry = get_object_or_404(about, id = id)
 
     if request.method == 'POST':
-        entry.about_title = request.POST.get('heading_name')
-        entry.about_desc1 = request.POST.get('description_name')
-        entry.about_desc2 = request.POST.get('description2_name')
-        entry.vision = request.POST.get('vision_name')
-        entry.mission = request.POST.get('mission_name')
+        entry.about_title = request.POST.get('headingNameUpdate')
+        entry.about_desc1 = request.POST.get('aboutdesc1update')
+        entry.about_desc2 = request.POST.get('aboutdesc2update')
+        entry.vision = request.POST.get('aboutVisionUpdate')
+        entry.mission = request.POST.get('aboutMissionUpdate')
 
 
-        image_entry = request.FILE.get('about_image')
+        image_entry = request.FILES.get('aboutImageUpdate')
         if image_entry:
             entry.image.save(image_entry.name, image_entry, save=True)
         entry.save()
@@ -369,7 +369,27 @@ def update_gallery(request, id):
     if request.method == 'POST':
         entry.city = request.POST.get('cityupdate')
         entry.description = request.POST.get('descupdate')
-        entry.gallery_image = request.POST.get('gallery_image')
+
+        image_var = request.FILES.get('gallery_image')
+        if image_var:
+            entry.gallery_image.save(image_var.name, image_var, save=True)
         entry.save()
     
     return redirect('admin_gallery')
+
+
+def update_services(request, id):
+    entry = get_object_or_404(services_data, id=id)
+
+    if request.method == 'POST':
+        entry.service_Name = request.POST.get('serviceNameUpdate')
+        entry.service_Description = request.POST.get('Servicedescupdate')
+
+        image_var = request.FILES.get('service_image')
+        if image_var:
+            entry.service_image.save(image_var.name, image_var, save=True)
+        entry.save()
+
+        print(entry.service_Description)
+    
+    return redirect('admin_services')

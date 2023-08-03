@@ -226,6 +226,63 @@
         </div>
     </div>
 
+
+    <!-- Update Model Start -->
+    {% for data in about_data %}
+    <div class="modal fade bd-example-modal-lg" id="Update{{ data.id }}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update About Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="aboutupdate/{{ data.id }}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="Addressupdate" class="col-form-label">Update Heading</label>
+                            <input type='text' class="form-control ckeditor-field" id="headingNameupdate{{ data.id }}" required
+                                name="headingNameUpdate" value="{{ data.about_title }}"></input><br />
+
+
+                           <label for="aboutdesc1update" class="col-form-label">Update Description 1</label>
+                            <textarea name="aboutdesc1update" id="aboutdesc1update{{ data.id }}" class="form-control ckeditor-textarea">{{ data.about_desc1 }}</textarea><br />
+
+                           <label for="aboutdesc2update" class="col-form-label">Update Description 2</label>
+                            <textarea name="aboutdesc2update" id="aboutdesc2update{{ data.id }}" class="form-control ckeditor-textarea">{{ data.about_desc2 }}</textarea><br />
+
+                           <label for="aboutVisionUpdate" class="col-form-label">Update Vision</label>
+                            <textarea name="aboutVisionUpdate" id="aboutVisionUpdate{{ data.id }}" class="form-control ckeditor-textarea">{{ data.vision }}</textarea><br />
+
+                           <label for="aboutMissionUpdate" class="col-form-label">Update Mission</label>
+                            <textarea name="aboutMissionUpdate" id="aboutMissionUpdate{{ data.id }}" class="form-control ckeditor-textarea">{{ data.mission }}</textarea><br />
+
+                            <label for="aboutImageUpdate" class="col-form-label">Update About Image</label>
+                            <input type="file" class="form-control" id="aboutImageUpdate{{ data.id }}" name="aboutImageUpdate" multiple /><br />
+
+                            {% if data.image %}
+                            <div class="text-center">
+                                <img src="{{ data.image.url }}" alt="Current Image"
+                                    style="width: 200px; height: 100px; border: 1px solid black;"><br />
+                            </div>
+                            {% endif %}
+
+                            <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary"><i
+                                        class="fa-regular fa-pen-to-square" name="submit_button"></i>Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Update Model End -->
+
 {% include "dash/templates/includes/footer.html" %}
 
 
