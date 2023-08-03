@@ -49,12 +49,31 @@ class cars(models.Model):
     driver_allowance = models.IntegerField(null=True)
     car_image = models.ImageField(upload_to='carImage/', null=True, blank=True)
 
+    def update(self, new_carName, new_seatingCapacity, new_rate, new_range, new_allowance,new_image):
+        self.id = id
+        self.car_name = new_carName
+        self.seating_capacity = new_seatingCapacity
+        self.rate_par_km = new_rate
+        self.min_range = new_range
+        self.driver_allowance = new_allowance
+        self.car_image = new_image
+        self.save()
+
 class rides(models.Model):
     ride_start = models.CharField(max_length=255, null=True)
     ride_end = models.CharField(max_length=255, null=True)
     ride_type = models.CharField(max_length=255, null=True)
     sedan_price = models.IntegerField(null=True)
     suv_price = models.IntegerField(null=True)
+
+    def update(self, rideStart, rideEnd, rideType, sedanPrice, suvPrice):
+        self.id = id
+        self.ride_start = rideStart
+        self.ride_end = rideEnd
+        self.ride_type = rideType
+        self.sedan_price = sedanPrice
+        self.suv_price = suvPrice
+        self.save()
 
 class about(models.Model):
     about_title = models.CharField(max_length=255, null=True)

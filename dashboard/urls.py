@@ -35,6 +35,8 @@ urlpatterns = [
     path('galleryupdate/<int:id>', views.update_gallery, name='update_gallery'),
     path('servicesupdate/<int:id>', views.update_services, name='update_services'),
     path('aboutupdate/<int:id>', views.update_about, name='update_about'),
+    path('rideupdate/<int:id>', views.update_rides, name='update_rides'),
+    path('carupdate/<int:id>', views.update_cars, name='update_cars'),
 
 
 

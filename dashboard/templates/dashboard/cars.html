@@ -91,7 +91,7 @@
                             <tr>
                                 {% for data in page_obj%}
                                 <td style="text-align: center;"  scope="row">
-                                    {{forloop.counter}}
+                                    {{ forloop.counter|add:page_obj.start_index|add:"-1" }}
                                 </td>
                                 <td scope="row" style="text-align: center;">
                                     {{data.car_name}}
@@ -236,6 +236,69 @@
             </div>
         </div>
     </div>
+
+
+    
+     <!-- Update Model Start -->
+     {% for data in car_data %}
+     <div class="modal fade bd-example-modal-lg" id="Update{{ data.id }}">
+         <div class="modal-dialog modal-lg" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Update Rides</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <form method="post" action="carupdate/{{ data.id }}" enctype="multipart/form-data">
+                         {% csrf_token %}
+                         <div class="form-group">
+
+                            <label for="recipient-name" class="col-form-label">Car Name</label>
+                            <input type="text" class="form-control" id="carName_ID" required
+                            name="updatecarName_name" value="{{data.car_name}}"/><br />
+
+                            <label for="headingname21" class="col-form-label">Seating Capacity</label>
+                            <input type="number" class="form-control" id="seatingCapacity_ID" required
+                            name="updateseatingCapacity_name" value="{{data.seating_capacity}}"/><br />
+
+                            <label for="headingname21" class="col-form-label">Rate Per KM</label>
+                            <input type="number" class="form-control" id="carRate_ID" required
+                            name="updatecarRate_name" value="{{data.rate_par_km}}"/><br />
+
+                            <label for="headingname21" class="col-form-label">Min. Range In KMs</label>
+                            <input type="number" class="form-control" id="carRange_ID" required
+                            name="updatecarRange_name" value="{{data.min_range}}"/><br />
+
+                            <label for="headingname21" class="col-form-label">Driver Allowance</label>
+                            <input type="number" class="form-control" id="driverAllowance_ID" required
+                            name="updatedriverAllowance_name" value="{{data.driver_allowance}}"/><br />
+                            
+                            <label for="image" class="col-form-label">Car Image</label>
+                            <input type="file" class="form-control" id="carImage_ID" name="updatecarImage_name" /><br />
+
+                            {% if data.car_image %}
+                                <div class="text-center">
+                                    <img src="{{ data.car_image.url }}" alt="Current Image"
+                                        style="width: 200px; height: 100px; border: 1px solid black;"><br />
+                                </div>
+                                {% endif %}
+
+                            <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+     {% endfor %}
+     <!-- Update Model End -->
 
     {% include "dash/templates/includes/footer.html" %}
 

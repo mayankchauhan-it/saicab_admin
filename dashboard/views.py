@@ -390,6 +390,38 @@ def update_services(request, id):
             entry.service_image.save(image_var.name, image_var, save=True)
         entry.save()
 
-        print(entry.service_Description)
     
     return redirect('admin_services')
+
+def update_rides(request, id):
+    entry = get_object_or_404(rides, id=id)
+
+    if request.method == 'POST':
+        entry.ride_start = request.POST.get('rideStartLocationUpdate_name')
+        entry.ride_end = request.POST.get('rideEndLocationUpdate_name')
+        entry.ride_type = request.POST.get('rideTypeUpdate_name')
+        entry.sedan_price = request.POST.get('sendaPriceUpdate_name')
+        entry.suv_price = request.POST.get('suvPriceUpdate_name')
+        entry.save()
+
+
+    
+    return redirect('add_ride')
+
+
+def update_cars(request, id):
+    entry = get_object_or_404(cars, id=id)
+
+    if request.method == 'POST':
+        entry.car_name = request.POST.get('updatecarName_name')
+        entry.seating_capacity = request.POST.get('updateseatingCapacity_name')
+        entry.rate_par_km = request.POST.get('updatecarRate_name')
+        entry.min_range = request.POST.get('updatecarRange_name')
+        entry.driver_allowance = request.POST.get('updatedriverAllowance_name')
+
+        image_var = request.FILES.get('updatecarImage_name')
+        if image_var:
+            entry.car_image.save(image_var.name, image_var, save=True)
+        entry.save()
+    
+    return redirect('add_car')

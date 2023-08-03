@@ -88,7 +88,7 @@
                             <tr>
                                 {% for data in page_obj%}
                                 <td style="text-align: center;"  scope="row">
-                                    {{forloop.counter}}
+                                    {{ forloop.counter|add:page_obj.start_index|add:"-1" }}
                                 </td>
                                 <td scope="row" style="text-align: center;">
                                     {{data.ride_start}}
@@ -152,9 +152,7 @@
 
                                 <span class="current">
                                     Total {{ page_obj.paginator.count }}.
-                                    
                                 </span>
-
                             </div>
 
                             <div>
@@ -224,27 +222,79 @@
         </div>
     </div>
 
+
+
+     <!-- Update Model Start -->
+     {% for data in ride_Data %}
+     <div class="modal fade bd-example-modal-lg" id="Update{{ data.id }}">
+         <div class="modal-dialog modal-lg" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Update Rides</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <form method="post" action="rideupdate/{{ data.id }}" enctype="multipart/form-data">
+                         {% csrf_token %}
+                         <div class="form-group">
+                            <label for="rideStartLocation" class="col-form-label">Start Location</label>
+                            <input type="text" class="form-control" id="rideStartLocationUpdate_ID" required
+                            name="rideStartLocationUpdate_name" value="{{data.ride_start}}"/><br />
+
+                            <label for="rideEndLocation" class="col-form-label">End Location</label>
+                            <input type="text" class="form-control" id="rideEndLocationUpdate_ID" required
+                            name="rideEndLocationUpdate_name" value="{{data.ride_end}}"/><br />
+
+                            <label for="rideType" class="col-form-label">Ride Type</label>
+                            <select class="form-control" id="rideTypeUpdate_ID" required name="rideTypeUpdate_name" value="{{data.ride_type}}">
+                                <option value="One Way" {% if data.ride_type == "One Way" %}selected{% endif %}>One Way</option>
+                                <option value="Round Way" {% if data.ride_type == "Round Way" %}selected{% endif %}>Round Way</option>
+                                <!-- Add more options as needed -->
+                            </select><br />
+
+                            <label for="sedanPrice" class="col-form-label">Sedan Price</label>
+                            <input type="number" class="form-control" id="sendaPriceUpdate_ID" required
+                            name="sendaPriceUpdate_name" value="{{data.sedan_price}}"/><br />
+
+                            <label for="suvPrice" class="col-form-label">SUV Price</label>
+                            <input type="number" class="form-control" id="suvPriceUpdate_ID" required
+                            name="suvPriceUpdate_name" value="{{data.suv_price}}"/><br />
+
+                            {% if data.gallery_image %}
+                             <div class="text-center">
+                                 <img src="{{ data.gallery_image.url }}" alt="Current Image"
+                                     style="width: 200px; height: 100px; border: 1px solid black;"><br />
+                             </div>
+                             {% endif %}
+                             
+ 
+                             <div class="modal-footer" style="margin-bottom: -36px; margin-right: -24px">
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="submit" class="btn btn-primary"><i
+                                         class="fa-regular fa-pen-to-square" name="submit_button"></i>Submit</button>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+     {% endfor %}
+     <!-- Update Model End -->
+
     {% include "dash/templates/includes/footer.html" %}
 
 
       <!-- Specific JS goes HERE --> 
   {% block javascripts %}
 
-  {% comment %} <script>
-    // Function to automatically dismiss messages after 2 seconds
-    document.addEventListener(function () {
-        const divIds = ['headingname11', 'headingname21']; // Add more IDs as needed
-
-        for (const divId of divIds) {
-            CKEDITOR.replace(divId);
-        }
-    });
-  </script> {% endcomment %}
-  
-  
   {% endblock javascripts %}
 
 
 </div>
 
 {% endblock content %}
+
+
