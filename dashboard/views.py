@@ -293,14 +293,6 @@ def delete_contact(request, id):
     car.delete()
     return redirect('admin_contact')
 
-
-
-
-
-
-
-
-
 def deletehomedata(request, id):
     entry = sliderupdate.objects.get(id=id)
     # entry = sliderupdate.objects.all()

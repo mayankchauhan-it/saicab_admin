@@ -19,7 +19,7 @@ def get_cities_for_state(request):
     query = request.GET.get('query', '')
     
     # Create a geolocator object
-    geolocator = Nominatim(user_agent="myGeocoder")
+    geolocator = Nominatim(user_agent="frontend")
     
     # Use geopy to get the location for the query
     location = geolocator.geocode(query + ", India", exactly_one=False)
